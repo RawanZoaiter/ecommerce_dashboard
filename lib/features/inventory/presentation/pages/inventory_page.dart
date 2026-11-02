@@ -5,6 +5,7 @@ import '../../../../core/di/injector.dart';
 import '../../../../core/extensions/context_x.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/utils/date_formatter.dart';
+import '../../../../core/utils/number_formatter.dart';
 import '../../../../core/widgets/app_card.dart';
 import '../../../../core/widgets/app_paginator.dart';
 import '../../../../core/widgets/app_table.dart';
@@ -205,7 +206,7 @@ class _QuantityCell extends StatelessWidget {
         : context.colors.onSurface;
 
     return Text(
-      '${item.quantityOnHand}',
+      NumberFormatter.count(item.quantityOnHand!, context.localeName),
       style: context.text.titleSmall?.copyWith(color: color),
     );
   }

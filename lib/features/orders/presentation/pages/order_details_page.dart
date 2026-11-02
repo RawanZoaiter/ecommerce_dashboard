@@ -8,6 +8,7 @@ import '../../../../core/extensions/context_x.dart';
 import '../../../../core/router/route_paths.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/utils/date_formatter.dart';
+import '../../../../core/utils/number_formatter.dart';
 import '../../../../core/widgets/app_card.dart';
 import '../../../../core/widgets/app_table.dart';
 import '../../../../core/widgets/confirm_dialog.dart';
@@ -343,7 +344,10 @@ class _ItemsCard extends StatelessWidget {
                     color: context.colors.onSurfaceVariant,
                   ),
                 ),
-                Text('${line.quantity}', style: context.text.bodyMedium),
+                Text(
+                  NumberFormatter.count(line.quantity, context.localeName),
+                  style: context.text.bodyMedium,
+                ),
                 Text(
                   line.lineTotal.format(locale: context.localeName),
                   style: context.text.titleSmall,

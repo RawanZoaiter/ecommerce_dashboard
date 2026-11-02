@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SettingsState extends Equatable {
   const SettingsState({
     this.locale = const Locale('ar'),
-    this.themeMode = ThemeMode.light,
+    this.themeMode = ThemeMode.system,
   });
 
   final Locale locale;

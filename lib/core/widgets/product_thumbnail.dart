@@ -37,8 +37,9 @@ class ProductThumbnail extends StatelessWidget {
                 imageUrl: imageUrl,
                 fit: BoxFit.cover,
                 fadeInDuration: const Duration(milliseconds: 180),
-                placeholder: (context, _) =>
-                    ColoredBox(color: context.semantic.surfaceSunken),
+                // The same fallback while loading, so a slow or offline table
+                // shows initials rather than a column of blank boxes.
+                placeholder: (context, _) => _Fallback(name: name, size: size),
                 errorWidget: (context, _, _) =>
                     _Fallback(name: name, size: size),
               ),
