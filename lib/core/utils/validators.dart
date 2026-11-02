@@ -6,9 +6,7 @@ import '../../l10n/generated/app_localizations.dart';
 /// validates again and its 422 response is what actually decides. Each rule
 /// mirrors the exact limits written in the guide, so the two agree.
 abstract final class Validators {
-  static final _emailPattern = RegExp(
-    r'^[\w.+-]+@([\w-]+\.)+[\w-]{2,}$',
-  );
+  static final _emailPattern = RegExp(r'^[\w.+-]+@([\w-]+\.)+[\w-]{2,}$');
 
   /// §5.10: digits only, at most two decimals, greater than zero.
   static final _pricePattern = RegExp(r'^\d+(\.\d{1,2})?$');
