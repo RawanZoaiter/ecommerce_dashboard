@@ -1,30 +1,34 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
+import 'package:ecommerce_dashboard/core/utils/money.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:ecommerce_dashboard/main.dart';
-
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  group('Money', () {
+    test('parses the API decimal string into exact minor units', () {
+      expect(Money.parse('899.50').minorUnits, 89950);
+      expect(Money.parse('25').minorUnits, 2500);
+      expect(Money.parse('0.5').minorUnits, 50);
+    });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    test('round-trips back to the API format', () {
+      expect(Money.parse('899.50').apiValue, '899.50');
+      expect(Money.parse('25').apiValue, '25.00');
+    });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    test('falls back to zero instead of throwing on bad input', () {
+      expect(Money.parse('abc'), Money.zero);
+      expect(Money.parse(''), Money.zero);
+      expect(Money.parse('12.345'), Money.zero);
+    });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    test('sums order lines without floating point drift', () {
+      // 0.10 + 0.20 is 0.30000000000000004 in double arithmetic, which is
+      // exactly the error Money exists to avoid.
+      final total = Money.sum([Money.parse('0.10'), Money.parse('0.20')]);
+      expect(total.apiValue, '0.30');
+    });
+
+    test('multiplies a unit price by a quantity exactly', () {
+      expect(Money.parse('899.50').times(3).apiValue, '2698.50');
+    });
   });
 }
