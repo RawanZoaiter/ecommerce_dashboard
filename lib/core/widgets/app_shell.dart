@@ -9,7 +9,6 @@ import '../extensions/context_x.dart';
 import '../router/route_paths.dart';
 import '../settings/settings_cubit.dart';
 import '../theme/app_spacing.dart';
-import 'info_banner.dart';
 import 'user_avatar.dart';
 
 class _NavItem {
@@ -92,19 +91,6 @@ class AppShell extends StatelessWidget {
               child: Column(
                 children: [
                   _TopBar(showMenuButton: isCompact),
-                  if (AppConfig.usesMockData)
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(
-                        AppSpacing.xxl,
-                        AppSpacing.lg,
-                        AppSpacing.xxl,
-                        0,
-                      ),
-                      child: InfoBanner(
-                        message: context.l10n.mockBannerMessageAll,
-                        icon: Icons.science_outlined,
-                      ),
-                    ),
                   Expanded(child: child),
                 ],
               ),
@@ -360,6 +346,40 @@ class _AccountTile extends StatelessWidget {
   }
 }
 
+class _MockDataChip extends StatelessWidget {
+  const _MockDataChip();
+
+  @override
+  Widget build(BuildContext context) {
+    final color = context.semantic.info;
+
+    return Tooltip(
+      message: context.l10n.mockBannerMessageAll,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.md,
+          vertical: AppSpacing.xs + 1,
+        ),
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.12),
+          borderRadius: BorderRadius.circular(AppRadius.pill),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.science_outlined, size: 15, color: color),
+            const SizedBox(width: AppSpacing.sm - 2),
+            Text(
+              context.l10n.mockBadge,
+              style: context.text.labelSmall?.copyWith(color: color),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _TopBar extends StatelessWidget {
   const _TopBar({required this.showMenuButton});
 
@@ -386,6 +406,10 @@ class _TopBar extends StatelessWidget {
                 icon: const Icon(Icons.menu),
               ),
             ),
+          // A chip rather than a banner: it has to be visible on every screen,
+          // and three of those already carry a banner of their own naming the
+          // endpoint they are waiting for.
+          if (AppConfig.usesMockData) const _MockDataChip(),
           const Spacer(),
           IconButton(
             tooltip: l10n.prefsLanguage,

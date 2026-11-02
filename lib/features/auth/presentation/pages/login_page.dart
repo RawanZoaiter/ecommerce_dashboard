@@ -58,7 +58,11 @@ class _BrandPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
+    return Container(
+      // Sized explicitly rather than left to shrink-wrap its child: inside a
+      // Row the vertical constraint is loose, and a decoration that only
+      // covers the content height leaves the rest of the column bare.
+      constraints: const BoxConstraints.expand(),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: AlignmentDirectional.topStart,
@@ -69,10 +73,11 @@ class _BrandPanel extends StatelessWidget {
           ],
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.giant),
+      padding: const EdgeInsets.all(AppSpacing.giant),
+      alignment: AlignmentDirectional.centerStart,
+      child: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
