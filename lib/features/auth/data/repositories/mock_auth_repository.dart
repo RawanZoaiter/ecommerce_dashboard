@@ -1,3 +1,4 @@
+import '../../../../core/config/app_config.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/error/result.dart';
 import '../../../../core/mock/mock_seed.dart';
@@ -17,7 +18,7 @@ class MockAuthRepository with MockSupport implements AuthRepository {
   static const _adminPassword = '123456789';
   static const _customerPassword = 'Secret123';
 
-  User? _session;
+  User? _session = AppConfig.mockSignedIn ? MockSeed.admin : null;
 
   @override
   Future<Result<User>> login({

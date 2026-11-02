@@ -22,6 +22,14 @@ abstract final class AppConfig {
 
   static bool get usesMockData => dataSource == DataSource.mock;
 
+  /// Starts the sample-data session already signed in as the admin:
+  /// `--dart-define=MOCK_SIGNED_IN=true`.
+  ///
+  /// For working on a screen without signing in after every rebuild, and for
+  /// screenshots. Ignored unless [usesMockData] is true, so it can never skip
+  /// a real login.
+  static const bool mockSignedIn = bool.fromEnvironment('MOCK_SIGNED_IN');
+
   /// §4 of the frontend guide: access tokens last 60 minutes.
   static const Duration accessTokenLifetime = Duration(minutes: 60);
 
