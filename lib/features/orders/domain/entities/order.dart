@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+import '../../../../core/utils/initials.dart';
 import '../../../../core/utils/money.dart';
 import 'order_status.dart';
 
@@ -38,6 +39,8 @@ class OrderCustomer extends Equatable {
   final int id;
   final String name;
   final String email;
+
+  String get initials => initialsFrom(name.trim().isNotEmpty ? name : email);
 
   @override
   List<Object?> get props => [id, name, email];
