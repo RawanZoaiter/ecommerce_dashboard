@@ -1,0 +1,12 @@
+# Normalize to LF in the repository and check out native line endings, so the
+# team does not trade whole-file diffs back and forth between machines.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.ttf binary
+*.otf binary
+*.docx binary
