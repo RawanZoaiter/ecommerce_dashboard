@@ -43,3 +43,10 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Backend credentials: the frontend guide and the Laravel .env carry the dev
+# admin password and JWT secret, so neither belongs in this repository.
+.env
+*.env
+Frontend-Guide.docx
+Frontend-Inventory-Update.docx
