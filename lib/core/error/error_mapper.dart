@@ -18,7 +18,9 @@ abstract final class ErrorMapper {
 
     final requestId = response.headers.value('x-request-id');
     final body = response.data;
-    final envelope = body is Map<String, dynamic> ? body : const <String, dynamic>{};
+    final envelope = body is Map<String, dynamic>
+        ? body
+        : const <String, dynamic>{};
     final message = envelope['message'] as String?;
     final data = envelope['data'];
 
@@ -101,11 +103,7 @@ abstract final class ErrorMapper {
   /// told apart by the shape of `data` first (`insufficient_items` is
   /// structured and stable) and only falls back to matching the message when
   /// `data` is null, which is the one case the API gives us nothing else.
-  static Failure _conflict({
-    String? message,
-    Object? data,
-    String? requestId,
-  }) {
+  static Failure _conflict({String? message, Object? data, String? requestId}) {
     if (data is Map<String, dynamic> && data['insufficient_items'] is List) {
       final raw = data['insufficient_items'] as List;
       return InsufficientStockFailure(
@@ -127,10 +125,7 @@ abstract final class ErrorMapper {
     }
 
     // "Cannot change order status from X to Y."
-    return StatusTransitionFailure(
-      debugMessage: message,
-      requestId: requestId,
-    );
+    return StatusTransitionFailure(debugMessage: message, requestId: requestId);
   }
 
   static Map<String, List<String>> _fieldErrors(Object? data) {
