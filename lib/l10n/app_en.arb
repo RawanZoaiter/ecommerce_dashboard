@@ -1,0 +1,281 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "E-Commerce Admin",
+  "appTitleShort": "Admin",
+
+  "navDashboard": "Dashboard",
+  "navProducts": "Products",
+  "navOrders": "Orders",
+  "navInventory": "Inventory",
+  "navUsers": "Users",
+  "navNotifications": "Notifications",
+
+  "actionSearch": "Search",
+  "actionFilter": "Filter",
+  "actionClear": "Clear",
+  "actionApply": "Apply",
+  "actionCancel": "Cancel",
+  "actionSave": "Save",
+  "actionAdd": "Add",
+  "actionRetry": "Retry",
+  "actionClose": "Close",
+  "actionConfirm": "Confirm",
+  "actionViewAll": "View all",
+  "actionBack": "Back",
+  "actionRefresh": "Refresh",
+
+  "commonAll": "All",
+  "commonLoading": "Loading…",
+  "commonActions": "Actions",
+  "commonCreatedAt": "Created",
+  "commonOptional": "optional",
+
+  "emptyTitle": "Nothing here yet",
+  "emptyMessage": "Once data arrives it will show up on this screen.",
+  "emptyNoResultsTitle": "No results",
+  "emptyNoResultsMessage": "Try changing or clearing the filters.",
+  "errorTitle": "Something went wrong",
+  "errorGeneric": "An error occurred. Please try again later.",
+  "errorNotFound": "Not found",
+  "errorForbidden": "You do not have permission for this action.",
+  "errorUnauthenticated": "Your session expired. Please sign in again.",
+  "errorNetwork": "Cannot reach the server. Check that it is running.",
+
+  "paginationPageOf": "Page {current} of {total}",
+  "@paginationPageOf": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "paginationShowing": "{from}–{to} of {total}",
+  "@paginationShowing": {
+    "placeholders": {
+      "from": { "type": "int" },
+      "to": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "paginationRowsPerPage": "Rows per page",
+  "paginationNext": "Next page",
+  "paginationPrevious": "Previous page",
+
+  "prefsLanguage": "Language",
+  "prefsLanguageArabic": "العربية",
+  "prefsLanguageEnglish": "English",
+  "prefsTheme": "Theme",
+  "prefsThemeLight": "Light",
+  "prefsThemeDark": "Dark",
+  "prefsThemeSystem": "System",
+
+  "accountSignOut": "Sign out",
+  "accountRoleAdmin": "Administrator",
+  "accountRoleCustomer": "Customer",
+
+  "loginTitle": "Sign in",
+  "loginSubtitle": "Administrator access to the store dashboard.",
+  "loginEmail": "Email",
+  "loginEmailHint": "admin@example.com",
+  "loginPassword": "Password",
+  "loginPasswordHint": "Enter your password",
+  "loginSubmit": "Sign in",
+  "loginShowPassword": "Show password",
+  "loginHidePassword": "Hide password",
+  "loginErrorEmailRequired": "Email is required.",
+  "loginErrorEmailInvalid": "Enter a valid email address.",
+  "loginErrorPasswordRequired": "Password is required.",
+  "loginErrorPasswordTooShort": "Password must be at least 8 characters.",
+  "loginErrorInvalidCredentials": "Incorrect email or password.",
+  "loginErrorThrottled": "Too many attempts. Try again in {seconds}s.",
+  "@loginErrorThrottled": {
+    "placeholders": {
+      "seconds": { "type": "int" }
+    }
+  },
+  "loginErrorNotAdmin": "This dashboard is for administrators only.",
+
+  "dashboardTitle": "Dashboard",
+  "dashboardGreeting": "Welcome back, {name}",
+  "@dashboardGreeting": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "dashboardSubtitle": "Here is what is happening in your store today.",
+  "dashboardMetricOrders": "Total orders",
+  "dashboardMetricRevenue": "Revenue",
+  "dashboardMetricProducts": "Products",
+  "dashboardMetricLowStock": "Low stock",
+  "dashboardOrdersByStatus": "Orders by status",
+  "dashboardRecentOrders": "Recent orders",
+  "dashboardRevenueTrend": "Revenue this week",
+  "dashboardInventoryDownTitle": "Inventory service unavailable",
+  "dashboardInventoryDownMessage": "Stock quantities cannot be read right now. Orders will fail until the service is back.",
+  "dashboardApiDownTitle": "API unreachable",
+  "dashboardApiDownMessage": "The dashboard cannot reach the server at {url}.",
+  "@dashboardApiDownMessage": {
+    "placeholders": {
+      "url": { "type": "String" }
+    }
+  },
+
+  "productsTitle": "Products",
+  "productsSubtitle": "Everything listed in the store.",
+  "productsAdd": "Add product",
+  "productsSearchHint": "Search by product name",
+  "productsFilterCategory": "Category",
+  "productsColumnImage": "Image",
+  "productsColumnName": "Name",
+  "productsColumnCategory": "Category",
+  "productsColumnPrice": "Price",
+  "productsColumnQuantity": "Available",
+  "productsEmptyTitle": "No products yet",
+  "productsEmptyMessage": "Add your first product to see it listed here.",
+
+  "productDetailsTitle": "Product details",
+  "productDetailsDescription": "Description",
+  "productDetailsAvailability": "Availability",
+  "productInStock": "{count} in stock",
+  "@productInStock": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "productOutOfStock": "Out of stock",
+  "productQuantityUnknown": "Quantity unknown",
+  "productQuantityUnknownHint": "Either the inventory service is down, or this product has no stock record yet.",
+  "productNoStockRecord": "No stock record",
+  "productNoStockRecordHint": "This product cannot be ordered until stock is registered for it.",
+
+  "productFormTitle": "Add product",
+  "productFormSubtitle": "The product becomes visible in the store immediately.",
+  "productFormName": "Product name",
+  "productFormNameHint": "Lenovo ThinkPad E14",
+  "productFormDescription": "Description",
+  "productFormDescriptionHint": "14-inch business laptop, 16GB RAM, 512GB SSD",
+  "productFormPrice": "Price",
+  "productFormPriceHint": "899.50",
+  "productFormCategory": "Category",
+  "productFormCategoryHint": "Pick a category",
+  "productFormImage": "Product image",
+  "productFormImagePick": "Choose an image",
+  "productFormImageReplace": "Replace image",
+  "productFormImageRemove": "Remove image",
+  "productFormImageRules": "JPG, JPEG, PNG or WEBP · up to 5 MB",
+  "productFormSubmit": "Add product",
+  "productFormErrorName": "Product name is required.",
+  "productFormErrorNameTooLong": "Name must be 255 characters or fewer.",
+  "productFormErrorDescription": "Description is required.",
+  "productFormErrorDescriptionTooLong": "Description must be 5000 characters or fewer.",
+  "productFormErrorPrice": "Price is required.",
+  "productFormErrorPriceFormat": "Use digits only, with at most two decimals.",
+  "productFormErrorPriceZero": "Price must be greater than zero.",
+  "productFormErrorCategory": "Pick a category.",
+  "productFormErrorImage": "A product image is required.",
+  "productFormErrorImageType": "Allowed types: JPG, JPEG, PNG, WEBP.",
+  "productFormErrorImageSize": "The image must be 5 MB or smaller.",
+  "productFormSuccess": "Product added.",
+  "productFormStockWarning": "Newly added products have no stock record, so they cannot be ordered until the inventory team registers a quantity.",
+
+  "ordersTitle": "Orders",
+  "ordersSubtitle": "Every order placed in the store.",
+  "ordersColumnId": "Order",
+  "ordersColumnCustomer": "Customer",
+  "ordersColumnItems": "Items",
+  "ordersColumnTotal": "Total",
+  "ordersColumnStatus": "Status",
+  "ordersEmptyTitle": "No orders yet",
+  "ordersEmptyMessage": "Orders placed by customers will appear here.",
+  "ordersFilterStatus": "Status",
+
+  "orderStatusPending": "Pending",
+  "orderStatusConfirmed": "Confirmed",
+  "orderStatusShipped": "Shipped",
+  "orderStatusDelivered": "Delivered",
+  "orderStatusCancelled": "Cancelled",
+
+  "orderDetailsTitle": "Order #{id}",
+  "@orderDetailsTitle": {
+    "placeholders": {
+      "id": { "type": "int" }
+    }
+  },
+  "orderDetailsItems": "Items",
+  "orderDetailsCustomer": "Customer",
+  "orderDetailsSummary": "Summary",
+  "orderDetailsTotal": "Total",
+  "orderDetailsItemCount": "{count, plural, =1{1 item} other{{count} items}}",
+  "@orderDetailsItemCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "orderDetailsUnitPrice": "Unit price",
+  "orderDetailsQuantity": "Qty",
+  "orderDetailsLineTotal": "Line total",
+  "orderDetailsTimeline": "Timeline",
+
+  "orderActionConfirm": "Confirm order",
+  "orderActionShip": "Mark as shipped",
+  "orderActionDeliver": "Mark as delivered",
+  "orderActionCancel": "Cancel order",
+  "orderActionFinalTitle": "This order is final",
+  "orderActionFinalMessage": "Delivered and cancelled orders cannot change status.",
+  "orderConfirmDialogTitle": "Change order status?",
+  "orderConfirmDialogMessage": "Order #{id} moves from {from} to {to}. The customer is notified.",
+  "@orderConfirmDialogMessage": {
+    "placeholders": {
+      "id": { "type": "int" },
+      "from": { "type": "String" },
+      "to": { "type": "String" }
+    }
+  },
+  "orderCancelDialogMessage": "Order #{id} will be cancelled and the reserved stock returned. This cannot be undone.",
+  "@orderCancelDialogMessage": {
+    "placeholders": {
+      "id": { "type": "int" }
+    }
+  },
+  "orderStatusUpdated": "Order status updated.",
+
+  "orderErrorInsufficientTitle": "Not enough stock",
+  "orderErrorInsufficientMessage": "Reduce the quantities and try again.",
+  "orderErrorInsufficientRequested": "Requested",
+  "orderErrorInsufficientAvailable": "Available",
+  "orderErrorUnavailableTitle": "Product not available for ordering",
+  "orderErrorUnavailableMessage": "One or more products have no stock record.",
+  "orderErrorInventoryDownTitle": "Inventory service busy",
+  "orderErrorInventoryDownMessage": "No order was created. Retrying sends the exact same request.",
+
+  "inventoryTitle": "Inventory",
+  "inventorySubtitle": "Stock levels per product.",
+  "inventoryColumnProduct": "Product",
+  "inventoryColumnQuantity": "On hand",
+  "inventoryColumnUpdated": "Updated",
+  "inventoryUpdateStock": "Update stock",
+  "inventoryStockQuantity": "Quantity on hand",
+
+  "usersTitle": "Users",
+  "usersSubtitle": "Everyone registered in the store.",
+  "usersColumnName": "Name",
+  "usersColumnEmail": "Email",
+  "usersColumnRole": "Role",
+  "usersColumnJoined": "Joined",
+
+  "notificationsTitle": "Notifications",
+  "notificationsSubtitle": "Updates about orders and stock.",
+  "notificationsMarkAllRead": "Mark all as read",
+  "notificationsUnreadCount": "{count, plural, =0{No unread} =1{1 unread} other{{count} unread}}",
+  "@notificationsUnreadCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "notificationsEmptyTitle": "No notifications",
+  "notificationsEmptyMessage": "You are all caught up.",
+
+  "mockBadge": "Sample data",
+  "mockBannerMessage": "This screen runs on sample data. It switches to the live API once the backend endpoint is ready.",
+  "mockBannerMessageAll": "The dashboard currently runs on sample data — no API calls are made yet."
+}
