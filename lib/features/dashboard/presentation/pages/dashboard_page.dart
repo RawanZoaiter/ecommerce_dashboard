@@ -7,6 +7,7 @@ import '../../../../core/extensions/context_x.dart';
 import '../../../../core/router/route_paths.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/utils/date_formatter.dart';
+import '../../../../core/utils/number_formatter.dart';
 import '../../../../core/widgets/app_card.dart';
 import '../../../../core/widgets/app_table.dart';
 import '../../../../core/widgets/info_banner.dart';
@@ -110,7 +111,7 @@ class _MetricGrid extends StatelessWidget {
     final cards = [
       MetricCard(
         label: l10n.dashboardMetricOrders,
-        value: '${stats?.totalOrders ?? 0}',
+        value: NumberFormatter.count(stats?.totalOrders ?? 0, locale),
         icon: Icons.receipt_long_outlined,
         isLoading: isLoading,
         onTap: () => context.go(Routes.orders),
@@ -124,7 +125,7 @@ class _MetricGrid extends StatelessWidget {
       ),
       MetricCard(
         label: l10n.dashboardMetricProducts,
-        value: '${stats?.productCount ?? 0}',
+        value: NumberFormatter.count(stats?.productCount ?? 0, locale),
         icon: Icons.inventory_2_outlined,
         tint: context.semantic.info,
         isLoading: isLoading,
@@ -132,7 +133,7 @@ class _MetricGrid extends StatelessWidget {
       ),
       MetricCard(
         label: l10n.dashboardMetricLowStock,
-        value: '${stats?.lowStockCount ?? 0}',
+        value: NumberFormatter.count(stats?.lowStockCount ?? 0, locale),
         icon: Icons.warning_amber_rounded,
         tint: context.semantic.warning,
         isLoading: isLoading,

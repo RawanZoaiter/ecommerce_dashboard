@@ -7,6 +7,7 @@ import '../../../../core/extensions/context_x.dart';
 import '../../../../core/router/route_paths.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/utils/date_formatter.dart';
+import '../../../../core/utils/number_formatter.dart';
 import '../../../../core/widgets/app_card.dart';
 import '../../../../core/widgets/app_paginator.dart';
 import '../../../../core/widgets/app_table.dart';
@@ -219,7 +220,10 @@ class _OrdersTable extends StatelessWidget {
                 ),
                 overflow: TextOverflow.ellipsis,
               ),
-              Text('${order.itemCount}', style: context.text.bodyMedium),
+              Text(
+                NumberFormatter.count(order.itemCount, context.localeName),
+                style: context.text.bodyMedium,
+              ),
               StatusChip(order.status, dense: true),
               Text(
                 order.total.format(locale: context.localeName),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/extensions/context_x.dart';
 import '../../../../core/theme/app_spacing.dart';
+import '../../../../core/utils/number_formatter.dart';
 import '../../../../core/widgets/status_chip.dart';
 import '../../../orders/domain/entities/order_status.dart';
 
@@ -68,12 +69,15 @@ class _StatusRow extends StatelessWidget {
                 style: context.text.bodySmall,
               ),
             ),
-            Text('$count', style: context.text.titleSmall),
+            Text(
+              NumberFormatter.count(count, context.localeName),
+              style: context.text.titleSmall,
+            ),
             const SizedBox(width: AppSpacing.sm),
             SizedBox(
               width: 44,
               child: Text(
-                '${(share * 100).round()}%',
+                NumberFormatter.percent(share, context.localeName),
                 style: context.text.bodySmall?.copyWith(
                   color: context.colors.onSurfaceVariant,
                 ),

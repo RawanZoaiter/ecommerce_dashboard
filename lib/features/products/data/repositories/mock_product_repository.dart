@@ -31,8 +31,15 @@ class MockProductRepository with MockSupport implements ProductRepository {
   }) async {
     await settle();
 
+    // Newest first, the order the API documents. Sorted by creation time
+    // rather than by id, since the two do not agree in the sample data.
     var filtered = _products.toList()
-      ..sort((a, b) => b.id.compareTo(a.id)); // newest first, like the API
+      ..sort((a, b) {
+        final left = a.createdAt;
+        final right = b.createdAt;
+        if (left == null || right == null) return b.id.compareTo(a.id);
+        return right.compareTo(left);
+      });
 
     if (categoryId != null) {
       filtered = filtered
