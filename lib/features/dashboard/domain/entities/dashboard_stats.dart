@@ -1,62 +1,33 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../../core/utils/money.dart';
 import '../../../orders/domain/entities/order.dart';
 import '../../../orders/domain/entities/order_status.dart';
 
-class DailyRevenue extends Equatable {
-  const DailyRevenue({required this.day, required this.amount});
-
-  final DateTime day;
-  final Money amount;
-
-  @override
-  List<Object?> get props => [day, amount];
-}
-
-/// Everything the home screen shows.
+/// What the home screen shows.
 ///
-/// There is no aggregate endpoint yet. Once `GET /admin/stats` exists this maps
-/// straight onto it; until then the live implementation would have to derive
-/// the counters from the paginated order lists, which is why the request was
-/// raised with the backend team.
+/// Every field here is derived from an endpoint that actually exists. Revenue,
+/// a low-stock count and a weekly trend were dropped rather than approximated:
+/// there is no aggregate endpoint, the product list carries no quantity, and
+/// summing one page of orders would print a number that looks authoritative
+/// while being wrong. They come back when `GET /admin/stats` does.
 class DashboardStats extends Equatable {
   const DashboardStats({
     required this.ordersByStatus,
-    required this.revenue,
     required this.productCount,
-    required this.lowStockCount,
-    required this.revenueByDay,
     required this.recentOrders,
-    required this.inventoryReachable,
   });
 
+  /// One `meta.total` per status, read from `GET /orders?status=…`.
   final Map<OrderStatus, int> ordersByStatus;
-  final Money revenue;
+
+  /// `meta.total` from `GET /products`.
   final int productCount;
 
-  /// Products at or below the low-stock threshold. Cannot be computed from the
-  /// product list endpoint today, because it carries no quantity.
-  final int lowStockCount;
-
-  final List<DailyRevenue> revenueByDay;
   final List<Order> recentOrders;
-
-  /// Drives the warning banner. Comes from a health check rather than from
-  /// guessing at a null quantity.
-  final bool inventoryReachable;
 
   int get totalOrders =>
       ordersByStatus.values.fold(0, (sum, count) => sum + count);
 
   @override
-  List<Object?> get props => [
-    ordersByStatus,
-    revenue,
-    productCount,
-    lowStockCount,
-    revenueByDay,
-    recentOrders,
-    inventoryReachable,
-  ];
+  List<Object?> get props => [ordersByStatus, productCount, recentOrders];
 }

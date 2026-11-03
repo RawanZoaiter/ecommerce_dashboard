@@ -10,7 +10,6 @@ import '../../../../core/utils/date_formatter.dart';
 import '../../../../core/utils/number_formatter.dart';
 import '../../../../core/widgets/app_card.dart';
 import '../../../../core/widgets/app_table.dart';
-import '../../../../core/widgets/info_banner.dart';
 import '../../../../core/widgets/metric_card.dart';
 import '../../../../core/widgets/page_header.dart';
 import '../../../../core/widgets/skeletons.dart';
@@ -21,7 +20,6 @@ import '../../../orders/domain/entities/order.dart';
 import '../../domain/entities/dashboard_stats.dart';
 import '../../domain/repositories/dashboard_repository.dart';
 import '../cubit/dashboard_cubit.dart';
-import '../widgets/revenue_chart.dart';
 import '../widgets/status_breakdown.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -72,19 +70,9 @@ class _DashboardView extends StatelessWidget {
               ],
             ),
             const SizedBox(height: AppSpacing.xxl),
-
-            if (stats != null && !stats.inventoryReachable) ...[
-              InfoBanner(
-                title: l10n.dashboardInventoryDownTitle,
-                message: l10n.dashboardInventoryDownMessage,
-                tone: BannerTone.warning,
-              ),
-              const SizedBox(height: AppSpacing.xl),
-            ],
-
             _MetricGrid(stats: stats, isLoading: state.isLoading),
             const SizedBox(height: AppSpacing.xl),
-            _Panels(stats: stats, isLoading: state.isLoading),
+            _Breakdown(stats: stats, isLoading: state.isLoading),
             const SizedBox(height: AppSpacing.xl),
             _RecentOrders(
               orders: stats?.recentOrders ?? const [],
@@ -117,13 +105,6 @@ class _MetricGrid extends StatelessWidget {
         onTap: () => context.go(Routes.orders),
       ),
       MetricCard(
-        label: l10n.dashboardMetricRevenue,
-        value: stats?.revenue.formatCompact(locale: locale) ?? '—',
-        icon: Icons.payments_outlined,
-        tint: context.semantic.success,
-        isLoading: isLoading,
-      ),
-      MetricCard(
         label: l10n.dashboardMetricProducts,
         value: NumberFormatter.count(stats?.productCount ?? 0, locale),
         icon: Icons.inventory_2_outlined,
@@ -131,23 +112,11 @@ class _MetricGrid extends StatelessWidget {
         isLoading: isLoading,
         onTap: () => context.go(Routes.products),
       ),
-      MetricCard(
-        label: l10n.dashboardMetricLowStock,
-        value: NumberFormatter.count(stats?.lowStockCount ?? 0, locale),
-        icon: Icons.warning_amber_rounded,
-        tint: context.semantic.warning,
-        isLoading: isLoading,
-        onTap: () => context.go(Routes.inventory),
-      ),
     ];
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final columns = switch (constraints.maxWidth) {
-          < 560 => 1,
-          < 980 => 2,
-          _ => 4,
-        };
+        final columns = constraints.maxWidth < 560 ? 1 : 2;
         const spacing = AppSpacing.lg;
         final width =
             (constraints.maxWidth - spacing * (columns - 1)) / columns;
@@ -164,18 +133,16 @@ class _MetricGrid extends StatelessWidget {
   }
 }
 
-class _Panels extends StatelessWidget {
-  const _Panels({required this.stats, required this.isLoading});
+class _Breakdown extends StatelessWidget {
+  const _Breakdown({required this.stats, required this.isLoading});
 
   final DashboardStats? stats;
   final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
-    final breakdown = AppCard(
-      title: l10n.dashboardOrdersByStatus,
+    return AppCard(
+      title: context.l10n.dashboardOrdersByStatus,
       clipBody: true,
       child: isLoading || stats == null
           ? const Padding(
@@ -183,38 +150,6 @@ class _Panels extends StatelessWidget {
               child: TableSkeleton(rows: 5, columns: 2),
             )
           : StatusBreakdown(ordersByStatus: stats!.ordersByStatus),
-    );
-
-    final revenue = AppCard(
-      title: l10n.dashboardRevenueTrend,
-      clipBody: true,
-      child: isLoading || stats == null
-          ? const Padding(
-              padding: EdgeInsets.all(AppSpacing.xl),
-              child: SkeletonBox(height: 200, radius: AppRadius.md),
-            )
-          : RevenueChart(days: stats!.revenueByDay),
-    );
-
-    if (context.isCompact) {
-      return Column(
-        children: [
-          breakdown,
-          const SizedBox(height: AppSpacing.xl),
-          revenue,
-        ],
-      );
-    }
-
-    return IntrinsicHeight(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(flex: 2, child: breakdown),
-          const SizedBox(width: AppSpacing.xl),
-          Expanded(flex: 3, child: revenue),
-        ],
-      ),
     );
   }
 }
