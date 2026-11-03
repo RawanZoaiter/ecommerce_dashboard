@@ -9,8 +9,6 @@ import 'core/settings/settings_cubit.dart';
 import 'core/theme/app_theme.dart';
 import 'features/auth/domain/repositories/auth_repository.dart';
 import 'features/auth/presentation/cubit/auth_cubit.dart';
-import 'features/notifications/domain/repositories/notification_repository.dart';
-import 'features/notifications/presentation/cubit/notifications_cubit.dart';
 import 'l10n/generated/app_localizations.dart';
 
 class EcommerceDashboardApp extends StatelessWidget {
@@ -23,10 +21,6 @@ class EcommerceDashboardApp extends StatelessWidget {
         BlocProvider(create: (_) => SettingsCubit()),
         BlocProvider(
           create: (_) => AuthCubit(sl<AuthRepository>())..restoreSession(),
-        ),
-        BlocProvider(
-          create: (_) =>
-              NotificationsCubit(sl<NotificationRepository>())..load(),
         ),
       ],
       child: const _AppView(),

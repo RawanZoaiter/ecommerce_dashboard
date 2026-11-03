@@ -1,16 +1,10 @@
 {
   "@@locale": "ar",
-
   "appTitle": "لوحة إدارة المتجر",
   "appTitleShort": "اللوحة",
-
   "navDashboard": "الرئيسية",
   "navProducts": "المنتجات",
   "navOrders": "الطلبات",
-  "navInventory": "المخزون",
-  "navUsers": "المستخدمون",
-  "navNotifications": "الإشعارات",
-
   "actionSearch": "بحث",
   "actionFilter": "تصفية",
   "actionClear": "مسح",
@@ -24,13 +18,11 @@
   "actionViewAll": "عرض الكل",
   "actionBack": "رجوع",
   "actionRefresh": "تحديث",
-
   "commonAll": "الكل",
   "commonLoading": "جارٍ التحميل…",
   "commonActions": "إجراءات",
   "commonCreatedAt": "أُنشئ",
   "commonOptional": "اختياري",
-
   "emptyTitle": "ما في شي هون بعد",
   "emptyMessage": "أول ما تجي البيانات رح تظهر بهاي الشاشة.",
   "emptyNoResultsTitle": "ما في نتائج",
@@ -41,13 +33,11 @@
   "errorForbidden": "ما عندك صلاحية لهذا الإجراء.",
   "errorUnauthenticated": "انتهت الجلسة. سجّل الدخول من جديد.",
   "errorNetwork": "ما قدرنا نوصل للسيرفر. تأكد إنه شغّال.",
-
   "paginationPageOf": "صفحة {current} من {total}",
   "paginationShowing": "{from}–{to} من {total}",
   "paginationRowsPerPage": "صفوف بالصفحة",
   "paginationNext": "الصفحة التالية",
   "paginationPrevious": "الصفحة السابقة",
-
   "prefsLanguage": "اللغة",
   "prefsLanguageArabic": "العربية",
   "prefsLanguageEnglish": "English",
@@ -55,11 +45,9 @@
   "prefsThemeLight": "فاتح",
   "prefsThemeDark": "داكن",
   "prefsThemeSystem": "حسب النظام",
-
   "accountSignOut": "تسجيل الخروج",
   "accountRoleAdmin": "مسؤول",
   "accountRoleCustomer": "زبون",
-
   "loginTitle": "تسجيل الدخول",
   "loginSubtitle": "دخول المسؤولين إلى لوحة إدارة المتجر.",
   "loginEmail": "البريد الإلكتروني",
@@ -76,26 +64,16 @@
   "loginErrorInvalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
   "loginErrorThrottled": "محاولات كثيرة. جرّب بعد {seconds} ثانية.",
   "loginErrorNotAdmin": "هذه اللوحة للمسؤولين فقط.",
-
   "dashboardTitle": "الرئيسية",
   "dashboardGreeting": "أهلًا بعودتك، {name}",
   "dashboardSubtitle": "هذا ملخّص ما يجري في متجرك اليوم.",
   "dashboardMetricOrders": "إجمالي الطلبات",
-  "dashboardMetricRevenue": "الإيرادات",
   "dashboardMetricProducts": "المنتجات",
-  "dashboardMetricLowStock": "مخزون منخفض",
   "dashboardOrdersByStatus": "الطلبات حسب الحالة",
   "dashboardRecentOrders": "آخر الطلبات",
-  "dashboardRevenueTrend": "إيرادات هذا الأسبوع",
-  "dashboardInventoryDownTitle": "خدمة المخزون غير متاحة",
-  "dashboardInventoryDownMessage": "ما بنقدر نقرأ الكميات حاليًا. الطلبات رح تفشل لحد ما ترجع الخدمة.",
-  "dashboardApiDownTitle": "تعذّر الوصول إلى الـ API",
-  "dashboardApiDownMessage": "اللوحة ما قدرت توصل للسيرفر على {url}.",
-
   "productsTitle": "المنتجات",
   "productsSubtitle": "كل ما هو معروض في المتجر.",
   "productsAdd": "إضافة منتج",
-  "productsSearchHint": "ابحث باسم المنتج",
   "productsFilterCategory": "التصنيف",
   "productsColumnImage": "الصورة",
   "productsColumnName": "الاسم",
@@ -104,7 +82,6 @@
   "productsColumnQuantity": "المتوفر",
   "productsEmptyTitle": "ما في منتجات بعد",
   "productsEmptyMessage": "أضف أول منتج ليظهر في هذه القائمة.",
-
   "productDetailsTitle": "تفاصيل المنتج",
   "productDetailsDescription": "الوصف",
   "productDetailsAvailability": "التوفّر",
@@ -114,7 +91,6 @@
   "productQuantityUnknownHint": "إما خدمة المخزون متوقفة، أو هذا المنتج ما إله سجل مخزون بعد.",
   "productNoStockRecord": "بلا سجل مخزون",
   "productNoStockRecordHint": "ما بينفع يُطلب هذا المنتج قبل ما تنسجّل له كمية.",
-
   "productFormTitle": "إضافة منتج",
   "productFormSubtitle": "المنتج بيصير ظاهر في المتجر فورًا.",
   "productFormName": "اسم المنتج",
@@ -144,7 +120,6 @@
   "productFormErrorImageSize": "حجم الصورة 5 ميغابايت كحد أقصى.",
   "productFormSuccess": "تمت إضافة المنتج.",
   "productFormStockWarning": "المنتج الجديد ما إله سجل مخزون، فما بينفع يُطلب لحد ما يسجّل له فريق المخزون كمية.",
-
   "ordersTitle": "الطلبات",
   "ordersSubtitle": "كل الطلبات في المتجر.",
   "ordersColumnId": "الطلب",
@@ -155,13 +130,11 @@
   "ordersEmptyTitle": "ما في طلبات بعد",
   "ordersEmptyMessage": "طلبات الزبائن رح تظهر هون.",
   "ordersFilterStatus": "الحالة",
-
   "orderStatusPending": "قيد الانتظار",
   "orderStatusConfirmed": "مؤكّد",
   "orderStatusShipped": "تم الشحن",
   "orderStatusDelivered": "تم التسليم",
   "orderStatusCancelled": "ملغي",
-
   "orderDetailsTitle": "الطلب رقم {id}",
   "orderDetailsItems": "العناصر",
   "orderDetailsCustomer": "الزبون",
@@ -172,7 +145,6 @@
   "orderDetailsQuantity": "الكمية",
   "orderDetailsLineTotal": "إجمالي السطر",
   "orderDetailsTimeline": "المسار",
-
   "orderActionConfirm": "تأكيد الطلب",
   "orderActionShip": "تعليمه كمشحون",
   "orderActionDeliver": "تعليمه كمُسلَّم",
@@ -183,7 +155,6 @@
   "orderConfirmDialogMessage": "الطلب رقم {id} رح ينتقل من {from} إلى {to}، وبينبعت إشعار للزبون.",
   "orderCancelDialogMessage": "الطلب رقم {id} رح ينلغى وترجع الكمية المحجوزة للمخزون. ما بينفع التراجع.",
   "orderStatusUpdated": "تم تحديث حالة الطلب.",
-
   "orderErrorInsufficientTitle": "الكمية غير كافية",
   "orderErrorInsufficientMessage": "قلّل الكميات وحاول من جديد.",
   "orderErrorInsufficientRequested": "المطلوب",
@@ -191,31 +162,5 @@
   "orderErrorUnavailableTitle": "منتج غير متاح للطلب",
   "orderErrorUnavailableMessage": "في منتج أو أكثر ما إله سجل مخزون.",
   "orderErrorInventoryDownTitle": "خدمة المخزون مشغولة",
-  "orderErrorInventoryDownMessage": "ما انعمل أي طلب. إعادة المحاولة بتبعت نفس الطلب تمامًا.",
-
-  "inventoryTitle": "المخزون",
-  "inventorySubtitle": "كميات المنتجات.",
-  "inventoryColumnProduct": "المنتج",
-  "inventoryColumnQuantity": "الكمية",
-  "inventoryColumnUpdated": "آخر تحديث",
-  "inventoryUpdateStock": "تعديل الكمية",
-  "inventoryStockQuantity": "الكمية المتوفرة",
-
-  "usersTitle": "المستخدمون",
-  "usersSubtitle": "كل من سجّل في المتجر.",
-  "usersColumnName": "الاسم",
-  "usersColumnEmail": "البريد الإلكتروني",
-  "usersColumnRole": "الدور",
-  "usersColumnJoined": "تاريخ التسجيل",
-
-  "notificationsTitle": "الإشعارات",
-  "notificationsSubtitle": "تحديثات عن الطلبات والمخزون.",
-  "notificationsMarkAllRead": "تعليم الكل كمقروء",
-  "notificationsUnreadCount": "{count, plural, =0{ما في غير مقروء} =1{واحد غير مقروء} =2{اثنان غير مقروءين} few{{count} غير مقروءة} other{{count} غير مقروء}}",
-  "notificationsEmptyTitle": "ما في إشعارات",
-  "notificationsEmptyMessage": "ما في شي جديد.",
-
-  "mockBadge": "بيانات تجريبية",
-  "mockBannerMessage": "هذه الشاشة تعمل على بيانات تجريبية، وبتتحوّل للـ API الحقيقي أول ما يجهز الـ endpoint.",
-  "mockBannerMessageAll": "اللوحة حاليًا تعمل على بيانات تجريبية — ما في أي اتصال بالـ API بعد."
+  "orderErrorInventoryDownMessage": "ما انعمل أي طلب. إعادة المحاولة بتبعت نفس الطلب تمامًا."
 }

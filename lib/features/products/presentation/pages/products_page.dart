@@ -12,7 +12,6 @@ import '../../../../core/widgets/app_paginator.dart';
 import '../../../../core/widgets/app_table.dart';
 import '../../../../core/widgets/page_header.dart';
 import '../../../../core/widgets/product_thumbnail.dart';
-import '../../../../core/widgets/search_field.dart';
 import '../../../../core/widgets/skeletons.dart';
 import '../../../../core/widgets/state_views.dart';
 import '../../domain/entities/category.dart';
@@ -126,11 +125,9 @@ class _Filters extends StatelessWidget {
       runSpacing: AppSpacing.md,
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        SearchField(
-          hintText: l10n.productsSearchHint,
-          initialValue: state.search,
-          onChanged: cubit.searchFor,
-        ),
+        // No search box: GET /products has no `?search=` parameter, and a box
+        // that only filtered the page already on screen would look like a
+        // search while quietly ignoring every other page.
         SizedBox(
           width: 220,
           child: DropdownButtonFormField<int?>(

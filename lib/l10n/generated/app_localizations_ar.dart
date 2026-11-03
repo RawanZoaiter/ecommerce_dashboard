@@ -24,15 +24,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get navOrders => 'الطلبات';
 
   @override
-  String get navInventory => 'المخزون';
-
-  @override
-  String get navUsers => 'المستخدمون';
-
-  @override
-  String get navNotifications => 'الإشعارات';
-
-  @override
   String get actionSearch => 'بحث';
 
   @override
@@ -231,37 +222,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dashboardMetricOrders => 'إجمالي الطلبات';
 
   @override
-  String get dashboardMetricRevenue => 'الإيرادات';
-
-  @override
   String get dashboardMetricProducts => 'المنتجات';
-
-  @override
-  String get dashboardMetricLowStock => 'مخزون منخفض';
 
   @override
   String get dashboardOrdersByStatus => 'الطلبات حسب الحالة';
 
   @override
   String get dashboardRecentOrders => 'آخر الطلبات';
-
-  @override
-  String get dashboardRevenueTrend => 'إيرادات هذا الأسبوع';
-
-  @override
-  String get dashboardInventoryDownTitle => 'خدمة المخزون غير متاحة';
-
-  @override
-  String get dashboardInventoryDownMessage =>
-      'ما بنقدر نقرأ الكميات حاليًا. الطلبات رح تفشل لحد ما ترجع الخدمة.';
-
-  @override
-  String get dashboardApiDownTitle => 'تعذّر الوصول إلى الـ API';
-
-  @override
-  String dashboardApiDownMessage(String url) {
-    return 'اللوحة ما قدرت توصل للسيرفر على $url.';
-  }
 
   @override
   String get productsTitle => 'المنتجات';
@@ -271,9 +238,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get productsAdd => 'إضافة منتج';
-
-  @override
-  String get productsSearchHint => 'ابحث باسم المنتج';
 
   @override
   String get productsFilterCategory => 'التصنيف';
@@ -569,83 +533,4 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get orderErrorInventoryDownMessage =>
       'ما انعمل أي طلب. إعادة المحاولة بتبعت نفس الطلب تمامًا.';
-
-  @override
-  String get inventoryTitle => 'المخزون';
-
-  @override
-  String get inventorySubtitle => 'كميات المنتجات.';
-
-  @override
-  String get inventoryColumnProduct => 'المنتج';
-
-  @override
-  String get inventoryColumnQuantity => 'الكمية';
-
-  @override
-  String get inventoryColumnUpdated => 'آخر تحديث';
-
-  @override
-  String get inventoryUpdateStock => 'تعديل الكمية';
-
-  @override
-  String get inventoryStockQuantity => 'الكمية المتوفرة';
-
-  @override
-  String get usersTitle => 'المستخدمون';
-
-  @override
-  String get usersSubtitle => 'كل من سجّل في المتجر.';
-
-  @override
-  String get usersColumnName => 'الاسم';
-
-  @override
-  String get usersColumnEmail => 'البريد الإلكتروني';
-
-  @override
-  String get usersColumnRole => 'الدور';
-
-  @override
-  String get usersColumnJoined => 'تاريخ التسجيل';
-
-  @override
-  String get notificationsTitle => 'الإشعارات';
-
-  @override
-  String get notificationsSubtitle => 'تحديثات عن الطلبات والمخزون.';
-
-  @override
-  String get notificationsMarkAllRead => 'تعليم الكل كمقروء';
-
-  @override
-  String notificationsUnreadCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count غير مقروء',
-      few: '$count غير مقروءة',
-      two: 'اثنان غير مقروءين',
-      one: 'واحد غير مقروء',
-      zero: 'ما في غير مقروء',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get notificationsEmptyTitle => 'ما في إشعارات';
-
-  @override
-  String get notificationsEmptyMessage => 'ما في شي جديد.';
-
-  @override
-  String get mockBadge => 'بيانات تجريبية';
-
-  @override
-  String get mockBannerMessage =>
-      'هذه الشاشة تعمل على بيانات تجريبية، وبتتحوّل للـ API الحقيقي أول ما يجهز الـ endpoint.';
-
-  @override
-  String get mockBannerMessageAll =>
-      'اللوحة حاليًا تعمل على بيانات تجريبية — ما في أي اتصال بالـ API بعد.';
 }

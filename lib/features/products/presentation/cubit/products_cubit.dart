@@ -16,7 +16,6 @@ class ProductsState extends Equatable {
     this.page = const Paginated.empty(),
     this.categories = const [],
     this.categoryId,
-    this.search = '',
     this.perPage = AppConfig.defaultPerPage,
     this.failure,
   });
@@ -25,14 +24,13 @@ class ProductsState extends Equatable {
   final Paginated<Product> page;
   final List<Category> categories;
   final int? categoryId;
-  final String search;
   final int perPage;
   final Failure? failure;
 
   bool get isLoading =>
       status == ProductsStatus.loading || status == ProductsStatus.initial;
 
-  bool get hasFilters => categoryId != null || search.isNotEmpty;
+  bool get hasFilters => categoryId != null;
 
   ProductsState copyWith({
     ProductsStatus? status,
@@ -40,7 +38,6 @@ class ProductsState extends Equatable {
     List<Category>? categories,
     int? categoryId,
     bool clearCategory = false,
-    String? search,
     int? perPage,
     Failure? failure,
   }) {
@@ -49,7 +46,6 @@ class ProductsState extends Equatable {
       page: page ?? this.page,
       categories: categories ?? this.categories,
       categoryId: clearCategory ? null : (categoryId ?? this.categoryId),
-      search: search ?? this.search,
       perPage: perPage ?? this.perPage,
       failure: failure,
     );
@@ -61,7 +57,6 @@ class ProductsState extends Equatable {
     page,
     categories,
     categoryId,
-    search,
     perPage,
     failure,
   ];
@@ -86,7 +81,6 @@ class ProductsCubit extends Cubit<ProductsState> {
       page: page,
       perPage: state.perPage,
       categoryId: state.categoryId,
-      search: state.search.isEmpty ? null : state.search,
     );
 
     emit(
@@ -99,7 +93,7 @@ class ProductsCubit extends Cubit<ProductsState> {
     );
   }
 
-  /// Filters always reset to page 1: staying on page 3 of a narrower result
+  /// Filtering always resets to page 1: staying on page 3 of a narrower result
   /// set would show an empty table for no visible reason.
   Future<void> filterByCategory(int? categoryId) async {
     emit(
@@ -108,13 +102,8 @@ class ProductsCubit extends Cubit<ProductsState> {
     await fetch();
   }
 
-  Future<void> searchFor(String query) async {
-    emit(state.copyWith(search: query));
-    await fetch();
-  }
-
   Future<void> clearFilters() async {
-    emit(state.copyWith(clearCategory: true, search: ''));
+    emit(state.copyWith(clearCategory: true));
     await fetch();
   }
 

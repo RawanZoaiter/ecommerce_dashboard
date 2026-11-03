@@ -128,24 +128,6 @@ abstract class AppLocalizations {
   /// **'Orders'**
   String get navOrders;
 
-  /// No description provided for @navInventory.
-  ///
-  /// In en, this message translates to:
-  /// **'Inventory'**
-  String get navInventory;
-
-  /// No description provided for @navUsers.
-  ///
-  /// In en, this message translates to:
-  /// **'Users'**
-  String get navUsers;
-
-  /// No description provided for @navNotifications.
-  ///
-  /// In en, this message translates to:
-  /// **'Notifications'**
-  String get navNotifications;
-
   /// No description provided for @actionSearch.
   ///
   /// In en, this message translates to:
@@ -524,23 +506,11 @@ abstract class AppLocalizations {
   /// **'Total orders'**
   String get dashboardMetricOrders;
 
-  /// No description provided for @dashboardMetricRevenue.
-  ///
-  /// In en, this message translates to:
-  /// **'Revenue'**
-  String get dashboardMetricRevenue;
-
   /// No description provided for @dashboardMetricProducts.
   ///
   /// In en, this message translates to:
   /// **'Products'**
   String get dashboardMetricProducts;
-
-  /// No description provided for @dashboardMetricLowStock.
-  ///
-  /// In en, this message translates to:
-  /// **'Low stock'**
-  String get dashboardMetricLowStock;
 
   /// No description provided for @dashboardOrdersByStatus.
   ///
@@ -553,36 +523,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Recent orders'**
   String get dashboardRecentOrders;
-
-  /// No description provided for @dashboardRevenueTrend.
-  ///
-  /// In en, this message translates to:
-  /// **'Revenue this week'**
-  String get dashboardRevenueTrend;
-
-  /// No description provided for @dashboardInventoryDownTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Inventory service unavailable'**
-  String get dashboardInventoryDownTitle;
-
-  /// No description provided for @dashboardInventoryDownMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'Stock quantities cannot be read right now. Orders will fail until the service is back.'**
-  String get dashboardInventoryDownMessage;
-
-  /// No description provided for @dashboardApiDownTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'API unreachable'**
-  String get dashboardApiDownTitle;
-
-  /// No description provided for @dashboardApiDownMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'The dashboard cannot reach the server at {url}.'**
-  String dashboardApiDownMessage(String url);
 
   /// No description provided for @productsTitle.
   ///
@@ -601,12 +541,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add product'**
   String get productsAdd;
-
-  /// No description provided for @productsSearchHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Search by product name'**
-  String get productsSearchHint;
 
   /// No description provided for @productsFilterCategory.
   ///
@@ -1141,138 +1075,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No order was created. Retrying sends the exact same request.'**
   String get orderErrorInventoryDownMessage;
-
-  /// No description provided for @inventoryTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Inventory'**
-  String get inventoryTitle;
-
-  /// No description provided for @inventorySubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Stock levels per product.'**
-  String get inventorySubtitle;
-
-  /// No description provided for @inventoryColumnProduct.
-  ///
-  /// In en, this message translates to:
-  /// **'Product'**
-  String get inventoryColumnProduct;
-
-  /// No description provided for @inventoryColumnQuantity.
-  ///
-  /// In en, this message translates to:
-  /// **'On hand'**
-  String get inventoryColumnQuantity;
-
-  /// No description provided for @inventoryColumnUpdated.
-  ///
-  /// In en, this message translates to:
-  /// **'Updated'**
-  String get inventoryColumnUpdated;
-
-  /// No description provided for @inventoryUpdateStock.
-  ///
-  /// In en, this message translates to:
-  /// **'Update stock'**
-  String get inventoryUpdateStock;
-
-  /// No description provided for @inventoryStockQuantity.
-  ///
-  /// In en, this message translates to:
-  /// **'Quantity on hand'**
-  String get inventoryStockQuantity;
-
-  /// No description provided for @usersTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Users'**
-  String get usersTitle;
-
-  /// No description provided for @usersSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Everyone registered in the store.'**
-  String get usersSubtitle;
-
-  /// No description provided for @usersColumnName.
-  ///
-  /// In en, this message translates to:
-  /// **'Name'**
-  String get usersColumnName;
-
-  /// No description provided for @usersColumnEmail.
-  ///
-  /// In en, this message translates to:
-  /// **'Email'**
-  String get usersColumnEmail;
-
-  /// No description provided for @usersColumnRole.
-  ///
-  /// In en, this message translates to:
-  /// **'Role'**
-  String get usersColumnRole;
-
-  /// No description provided for @usersColumnJoined.
-  ///
-  /// In en, this message translates to:
-  /// **'Joined'**
-  String get usersColumnJoined;
-
-  /// No description provided for @notificationsTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Notifications'**
-  String get notificationsTitle;
-
-  /// No description provided for @notificationsSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Updates about orders and stock.'**
-  String get notificationsSubtitle;
-
-  /// No description provided for @notificationsMarkAllRead.
-  ///
-  /// In en, this message translates to:
-  /// **'Mark all as read'**
-  String get notificationsMarkAllRead;
-
-  /// No description provided for @notificationsUnreadCount.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =0{No unread} =1{1 unread} other{{count} unread}}'**
-  String notificationsUnreadCount(int count);
-
-  /// No description provided for @notificationsEmptyTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'No notifications'**
-  String get notificationsEmptyTitle;
-
-  /// No description provided for @notificationsEmptyMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'You are all caught up.'**
-  String get notificationsEmptyMessage;
-
-  /// No description provided for @mockBadge.
-  ///
-  /// In en, this message translates to:
-  /// **'Sample data'**
-  String get mockBadge;
-
-  /// No description provided for @mockBannerMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'This screen runs on sample data. It switches to the live API once the backend endpoint is ready.'**
-  String get mockBannerMessage;
-
-  /// No description provided for @mockBannerMessageAll.
-  ///
-  /// In en, this message translates to:
-  /// **'The dashboard currently runs on sample data — no API calls are made yet.'**
-  String get mockBannerMessageAll;
 }
 
 class _AppLocalizationsDelegate

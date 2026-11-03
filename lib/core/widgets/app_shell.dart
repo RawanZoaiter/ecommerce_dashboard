@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/cubit/auth_cubit.dart';
-import '../../features/notifications/presentation/cubit/notifications_cubit.dart';
-import '../config/app_config.dart';
 import '../extensions/context_x.dart';
 import '../router/route_paths.dart';
 import '../settings/settings_cubit.dart';
@@ -25,6 +23,7 @@ class _NavItem {
   final String Function(BuildContext context) label;
 }
 
+/// Only the sections backed by an endpoint appear here.
 final List<_NavItem> _navItems = [
   _NavItem(
     route: Routes.dashboard,
@@ -43,24 +42,6 @@ final List<_NavItem> _navItems = [
     icon: Icons.receipt_long_outlined,
     activeIcon: Icons.receipt_long,
     label: (context) => context.l10n.navOrders,
-  ),
-  _NavItem(
-    route: Routes.inventory,
-    icon: Icons.warehouse_outlined,
-    activeIcon: Icons.warehouse,
-    label: (context) => context.l10n.navInventory,
-  ),
-  _NavItem(
-    route: Routes.users,
-    icon: Icons.people_outline,
-    activeIcon: Icons.people,
-    label: (context) => context.l10n.navUsers,
-  ),
-  _NavItem(
-    route: Routes.notifications,
-    icon: Icons.notifications_none,
-    activeIcon: Icons.notifications,
-    label: (context) => context.l10n.navNotifications,
   ),
 ];
 
@@ -235,7 +216,11 @@ class _NavTile extends StatelessWidget {
                 ? MainAxisAlignment.start
                 : MainAxisAlignment.center,
             children: [
-              _NavIcon(item: item, isActive: isActive, color: color),
+              Icon(
+                isActive ? item.activeIcon : item.icon,
+                size: 21,
+                color: color,
+              ),
               if (showLabel) ...[
                 const SizedBox(width: AppSpacing.md),
                 Expanded(
@@ -259,40 +244,6 @@ class _NavTile extends StatelessWidget {
   }
 }
 
-/// The notifications entry carries an unread badge; the rest are plain icons.
-class _NavIcon extends StatelessWidget {
-  const _NavIcon({
-    required this.item,
-    required this.isActive,
-    required this.color,
-  });
-
-  final _NavItem item;
-  final bool isActive;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    final icon = Icon(
-      isActive ? item.activeIcon : item.icon,
-      size: 21,
-      color: color,
-    );
-
-    if (item.route != Routes.notifications) return icon;
-
-    return BlocBuilder<NotificationsCubit, NotificationsState>(
-      buildWhen: (previous, current) =>
-          previous.unreadCount != current.unreadCount,
-      builder: (context, state) => Badge(
-        isLabelVisible: state.unreadCount > 0,
-        label: Text('${state.unreadCount}'),
-        child: icon,
-      ),
-    );
-  }
-}
-
 class _AccountTile extends StatelessWidget {
   const _AccountTile({required this.showLabels});
 
@@ -303,8 +254,6 @@ class _AccountTile extends StatelessWidget {
     final user = context.watch<AuthCubit>().state.user;
     if (user == null) return const SizedBox.shrink();
 
-    final avatar = UserAvatar(initials: user.initials, seed: user.email);
-
     return Padding(
       padding: const EdgeInsets.all(AppSpacing.md),
       child: Row(
@@ -312,7 +261,7 @@ class _AccountTile extends StatelessWidget {
             ? MainAxisAlignment.start
             : MainAxisAlignment.center,
         children: [
-          avatar,
+          UserAvatar(initials: user.initials, seed: user.email),
           if (showLabels) ...[
             const SizedBox(width: AppSpacing.md),
             Expanded(
@@ -346,40 +295,6 @@ class _AccountTile extends StatelessWidget {
   }
 }
 
-class _MockDataChip extends StatelessWidget {
-  const _MockDataChip();
-
-  @override
-  Widget build(BuildContext context) {
-    final color = context.semantic.info;
-
-    return Tooltip(
-      message: context.l10n.mockBannerMessageAll,
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.md,
-          vertical: AppSpacing.xs + 1,
-        ),
-        decoration: BoxDecoration(
-          color: color.withValues(alpha: 0.12),
-          borderRadius: BorderRadius.circular(AppRadius.pill),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.science_outlined, size: 15, color: color),
-            const SizedBox(width: AppSpacing.sm - 2),
-            Text(
-              context.l10n.mockBadge,
-              style: context.text.labelSmall?.copyWith(color: color),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class _TopBar extends StatelessWidget {
   const _TopBar({required this.showMenuButton});
 
@@ -406,10 +321,6 @@ class _TopBar extends StatelessWidget {
                 icon: const Icon(Icons.menu),
               ),
             ),
-          // A chip rather than a banner: it has to be visible on every screen,
-          // and three of those already carry a banner of their own naming the
-          // endpoint they are waiting for.
-          if (AppConfig.usesMockData) const _MockDataChip(),
           const Spacer(),
           IconButton(
             tooltip: l10n.prefsLanguage,

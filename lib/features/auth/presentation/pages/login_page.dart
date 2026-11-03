@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/config/app_config.dart';
 import '../../../../core/di/injector.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/extensions/context_x.dart';
@@ -237,15 +236,6 @@ class _LoginFormState extends State<_LoginForm> {
                         : Text(l10n.loginSubmit),
                   ),
                 ),
-                if (AppConfig.usesMockData) ...[
-                  const SizedBox(height: AppSpacing.xxl),
-                  InfoBanner(
-                    message:
-                        '${l10n.mockBannerMessageAll}\n'
-                        'admin@example.com · 123456789',
-                    icon: Icons.science_outlined,
-                  ),
-                ],
               ],
             ),
           ),

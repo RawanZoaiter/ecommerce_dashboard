@@ -24,15 +24,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navOrders => 'Orders';
 
   @override
-  String get navInventory => 'Inventory';
-
-  @override
-  String get navUsers => 'Users';
-
-  @override
-  String get navNotifications => 'Notifications';
-
-  @override
   String get actionSearch => 'Search';
 
   @override
@@ -235,37 +226,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashboardMetricOrders => 'Total orders';
 
   @override
-  String get dashboardMetricRevenue => 'Revenue';
-
-  @override
   String get dashboardMetricProducts => 'Products';
-
-  @override
-  String get dashboardMetricLowStock => 'Low stock';
 
   @override
   String get dashboardOrdersByStatus => 'Orders by status';
 
   @override
   String get dashboardRecentOrders => 'Recent orders';
-
-  @override
-  String get dashboardRevenueTrend => 'Revenue this week';
-
-  @override
-  String get dashboardInventoryDownTitle => 'Inventory service unavailable';
-
-  @override
-  String get dashboardInventoryDownMessage =>
-      'Stock quantities cannot be read right now. Orders will fail until the service is back.';
-
-  @override
-  String get dashboardApiDownTitle => 'API unreachable';
-
-  @override
-  String dashboardApiDownMessage(String url) {
-    return 'The dashboard cannot reach the server at $url.';
-  }
 
   @override
   String get productsTitle => 'Products';
@@ -275,9 +242,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get productsAdd => 'Add product';
-
-  @override
-  String get productsSearchHint => 'Search by product name';
 
   @override
   String get productsFilterCategory => 'Category';
@@ -576,81 +540,4 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get orderErrorInventoryDownMessage =>
       'No order was created. Retrying sends the exact same request.';
-
-  @override
-  String get inventoryTitle => 'Inventory';
-
-  @override
-  String get inventorySubtitle => 'Stock levels per product.';
-
-  @override
-  String get inventoryColumnProduct => 'Product';
-
-  @override
-  String get inventoryColumnQuantity => 'On hand';
-
-  @override
-  String get inventoryColumnUpdated => 'Updated';
-
-  @override
-  String get inventoryUpdateStock => 'Update stock';
-
-  @override
-  String get inventoryStockQuantity => 'Quantity on hand';
-
-  @override
-  String get usersTitle => 'Users';
-
-  @override
-  String get usersSubtitle => 'Everyone registered in the store.';
-
-  @override
-  String get usersColumnName => 'Name';
-
-  @override
-  String get usersColumnEmail => 'Email';
-
-  @override
-  String get usersColumnRole => 'Role';
-
-  @override
-  String get usersColumnJoined => 'Joined';
-
-  @override
-  String get notificationsTitle => 'Notifications';
-
-  @override
-  String get notificationsSubtitle => 'Updates about orders and stock.';
-
-  @override
-  String get notificationsMarkAllRead => 'Mark all as read';
-
-  @override
-  String notificationsUnreadCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count unread',
-      one: '1 unread',
-      zero: 'No unread',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get notificationsEmptyTitle => 'No notifications';
-
-  @override
-  String get notificationsEmptyMessage => 'You are all caught up.';
-
-  @override
-  String get mockBadge => 'Sample data';
-
-  @override
-  String get mockBannerMessage =>
-      'This screen runs on sample data. It switches to the live API once the backend endpoint is ready.';
-
-  @override
-  String get mockBannerMessageAll =>
-      'The dashboard currently runs on sample data — no API calls are made yet.';
 }

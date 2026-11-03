@@ -6,14 +6,11 @@ import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/cubit/auth_cubit.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/dashboard/presentation/pages/dashboard_page.dart';
-import '../../features/inventory/presentation/pages/inventory_page.dart';
-import '../../features/notifications/presentation/pages/notifications_page.dart';
 import '../../features/orders/presentation/pages/order_details_page.dart';
 import '../../features/orders/presentation/pages/orders_page.dart';
 import '../../features/products/presentation/pages/new_product_page.dart';
 import '../../features/products/presentation/pages/product_details_page.dart';
 import '../../features/products/presentation/pages/products_page.dart';
-import '../../features/users/presentation/pages/users_page.dart';
 import '../widgets/app_shell.dart';
 import 'route_paths.dart';
 
@@ -82,18 +79,6 @@ GoRouter createRouter(AuthCubit authCubit) {
                 ),
               ),
             ],
-          ),
-          GoRoute(
-            path: Routes.inventory,
-            builder: (context, state) => const InventoryPage(),
-          ),
-          GoRoute(
-            path: Routes.users,
-            builder: (context, state) => const UsersPage(),
-          ),
-          GoRoute(
-            path: Routes.notifications,
-            builder: (context, state) => const NotificationsPage(),
           ),
         ],
       ),
