@@ -108,6 +108,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get errorNetwork => 'ما قدرنا نوصل للسيرفر. تأكد إنه شغّال.';
 
   @override
+  String get errorTimeout => 'السيرفر عم ياخد وقت طويل بالرد. جرّب مرة ثانية.';
+
+  @override
   String paginationPageOf(int current, int total) {
     return 'صفحة $current من $total';
   }

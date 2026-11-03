@@ -33,6 +33,7 @@
   "errorForbidden": "You do not have permission for this action.",
   "errorUnauthenticated": "Your session expired. Please sign in again.",
   "errorNetwork": "Cannot reach the server. Check that it is running.",
+  "errorTimeout": "The server is taking too long to answer. Please try again.",
   "paginationPageOf": "Page {current} of {total}",
   "@paginationPageOf": {
     "placeholders": {

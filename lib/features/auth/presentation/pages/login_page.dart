@@ -269,6 +269,7 @@ class _LoginError extends StatelessWidget {
                   retryAfter.inSeconds,
                 ),
                 NetworkFailure() => l10n.errorNetwork,
+                TimeoutFailure() => l10n.errorTimeout,
                 ValidationFailure() => l10n.errorGeneric,
                 _ => l10n.errorGeneric,
               };

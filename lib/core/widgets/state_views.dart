@@ -46,6 +46,7 @@ class ErrorStateView extends StatelessWidget {
 
     final (title, message) = switch (failure) {
       NetworkFailure() => (l10n.errorTitle, l10n.errorNetwork),
+      TimeoutFailure() => (l10n.errorTitle, l10n.errorTimeout),
       UnauthenticatedFailure() => (l10n.errorTitle, l10n.errorUnauthenticated),
       ForbiddenFailure() => (l10n.errorTitle, l10n.errorForbidden),
       NotFoundFailure() => (l10n.errorNotFound, l10n.emptyNoResultsMessage),

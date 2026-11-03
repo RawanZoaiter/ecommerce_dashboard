@@ -165,6 +165,7 @@ class _Loaded extends StatelessWidget {
       StatusTransitionFailure() => l10n.orderActionFinalMessage,
       ForbiddenFailure() => l10n.errorForbidden,
       NetworkFailure() => l10n.errorNetwork,
+      TimeoutFailure() => l10n.errorTimeout,
       _ => l10n.errorGeneric,
     };
   }

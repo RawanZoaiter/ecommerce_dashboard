@@ -111,6 +111,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Cannot reach the server. Check that it is running.';
 
   @override
+  String get errorTimeout =>
+      'The server is taking too long to answer. Please try again.';
+
+  @override
   String paginationPageOf(int current, int total) {
     return 'Page $current of $total';
   }

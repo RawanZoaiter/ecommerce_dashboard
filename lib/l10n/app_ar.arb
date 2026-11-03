@@ -33,6 +33,7 @@
   "errorForbidden": "ما عندك صلاحية لهذا الإجراء.",
   "errorUnauthenticated": "انتهت الجلسة. سجّل الدخول من جديد.",
   "errorNetwork": "ما قدرنا نوصل للسيرفر. تأكد إنه شغّال.",
+  "errorTimeout": "السيرفر عم ياخد وقت طويل بالرد. جرّب مرة ثانية.",
   "paginationPageOf": "صفحة {current} من {total}",
   "paginationShowing": "{from}–{to} من {total}",
   "paginationRowsPerPage": "صفوف بالصفحة",

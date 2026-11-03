@@ -20,9 +20,20 @@ sealed class Failure extends Equatable {
   List<Object?> get props => [debugMessage, requestId];
 }
 
-/// No usable response: server unreachable, DNS failure, or a timeout.
+/// No usable response: the server refused the connection, the host does not
+/// resolve, or the browser blocked the request.
 class NetworkFailure extends Failure {
   const NetworkFailure({super.debugMessage, super.requestId});
+}
+
+/// The server was reached but did not answer in time.
+///
+/// Kept apart from [NetworkFailure] because the two call for opposite
+/// reactions: "the server is down, check it is running" sends someone hunting
+/// for a process that is in fact working, when the honest message is that it
+/// is simply too slow right now.
+class TimeoutFailure extends Failure {
+  const TimeoutFailure({super.debugMessage, super.requestId});
 }
 
 /// 401. Either sign in, or a token refresh is due.

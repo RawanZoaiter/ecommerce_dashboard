@@ -296,6 +296,12 @@ abstract class AppLocalizations {
   /// **'Cannot reach the server. Check that it is running.'**
   String get errorNetwork;
 
+  /// No description provided for @errorTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'The server is taking too long to answer. Please try again.'**
+  String get errorTimeout;
+
   /// No description provided for @paginationPageOf.
   ///
   /// In en, this message translates to:

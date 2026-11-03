@@ -13,7 +13,14 @@ abstract final class ErrorMapper {
     final response = error.response;
 
     if (response == null) {
-      return NetworkFailure(debugMessage: error.message);
+      return switch (error.type) {
+        DioExceptionType.connectionTimeout ||
+        DioExceptionType.sendTimeout ||
+        DioExceptionType.receiveTimeout => TimeoutFailure(
+          debugMessage: error.message,
+        ),
+        _ => NetworkFailure(debugMessage: error.message),
+      };
     }
 
     final requestId = response.headers.value('x-request-id');
