@@ -18,6 +18,7 @@ class ProductsState extends Equatable {
     this.categoryId,
     this.perPage = AppConfig.defaultPerPage,
     this.failure,
+    this.isLoadingStock = false,
   });
 
   final ProductsStatus status;
@@ -26,6 +27,10 @@ class ProductsState extends Equatable {
   final int? categoryId;
   final int perPage;
   final Failure? failure;
+
+  /// Quantities arrive after the rows, so the column shows its own progress
+  /// without the table waiting on it.
+  final bool isLoadingStock;
 
   bool get isLoading =>
       status == ProductsStatus.loading || status == ProductsStatus.initial;
@@ -40,6 +45,7 @@ class ProductsState extends Equatable {
     bool clearCategory = false,
     int? perPage,
     Failure? failure,
+    bool? isLoadingStock,
   }) {
     return ProductsState(
       status: status ?? this.status,
@@ -48,6 +54,7 @@ class ProductsState extends Equatable {
       categoryId: clearCategory ? null : (categoryId ?? this.categoryId),
       perPage: perPage ?? this.perPage,
       failure: failure,
+      isLoadingStock: isLoadingStock ?? this.isLoadingStock,
     );
   }
 
@@ -59,6 +66,7 @@ class ProductsState extends Equatable {
     categoryId,
     perPage,
     failure,
+    isLoadingStock,
   ];
 }
 
@@ -91,6 +99,55 @@ class ProductsCubit extends Cubit<ProductsState> {
             state.copyWith(status: ProductsStatus.failure, failure: failure),
       ),
     );
+
+    if (result.isOk) await _loadStock();
+  }
+
+  /// Fills the quantity column for the rows now on screen.
+  ///
+  /// Deliberately after [fetch] rather than inside it: the list endpoint has
+  /// no quantity, so this is one extra request per row, and making the table
+  /// wait for them would turn a fast page into a slow one.
+  Future<void> _loadStock() async {
+    final ids = state.page.items.map((product) => product.id).toList();
+    if (ids.isEmpty) return;
+
+    emit(state.copyWith(isLoadingStock: true));
+    final result = await _repository.availabilityFor(ids);
+
+    // The rows may have been replaced by a filter or a page change while this
+    // was in flight; applying stale quantities would mislabel them.
+    final current = state.page.items.map((product) => product.id).toList();
+    if (!_sameIds(ids, current)) return;
+
+    emit(
+      state.copyWith(
+        isLoadingStock: false,
+        page: result.fold(
+          onOk: (byId) => Paginated(
+            items: [
+              for (final product in state.page.items)
+                if (byId.containsKey(product.id))
+                  product.copyWith(availability: byId[product.id])
+                else
+                  product,
+            ],
+            meta: state.page.meta,
+          ),
+          // Leaving the rows untouched keeps every cell on "unknown", which is
+          // the honest reading when the lookup itself failed.
+          onErr: (_) => state.page,
+        ),
+      ),
+    );
+  }
+
+  bool _sameIds(List<int> a, List<int> b) {
+    if (a.length != b.length) return false;
+    for (var i = 0; i < a.length; i++) {
+      if (a[i] != b[i]) return false;
+    }
+    return true;
   }
 
   /// Filtering always resets to page 1: staying on page 3 of a narrower result

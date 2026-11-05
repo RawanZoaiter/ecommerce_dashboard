@@ -7,6 +7,7 @@ import '../../../../core/extensions/context_x.dart';
 import '../../../../core/router/route_paths.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/utils/date_formatter.dart';
+import '../../../../core/utils/number_formatter.dart';
 import '../../../../core/widgets/app_card.dart';
 import '../../../../core/widgets/app_paginator.dart';
 import '../../../../core/widgets/app_table.dart';
@@ -168,6 +169,9 @@ class _ProductsTable extends StatelessWidget {
     final products = context.select<ProductsCubit, List<Product>>(
       (cubit) => cubit.state.page.items,
     );
+    final isLoadingStock = context.select<ProductsCubit, bool>(
+      (cubit) => cubit.state.isLoadingStock,
+    );
 
     return AppTable(
       columns: [
@@ -175,6 +179,11 @@ class _ProductsTable extends StatelessWidget {
         AppTableColumn(label: l10n.productsColumnName, flex: 4),
         AppTableColumn(label: l10n.productsColumnCategory, flex: 2),
         AppTableColumn(label: l10n.commonCreatedAt, flex: 2),
+        AppTableColumn(
+          label: l10n.productsColumnQuantity,
+          width: 110,
+          numeric: true,
+        ),
         AppTableColumn(
           label: l10n.productsColumnPrice,
           width: 120,
@@ -211,6 +220,10 @@ class _ProductsTable extends StatelessWidget {
                   color: context.colors.onSurfaceVariant,
                 ),
               ),
+              _StockCell(
+                availability: product.availability,
+                isLoading: isLoadingStock,
+              ),
               Text(
                 product.price.format(locale: context.localeName),
                 style: context.text.titleSmall,
@@ -219,5 +232,51 @@ class _ProductsTable extends StatelessWidget {
           ),
       ],
     );
+  }
+}
+
+/// The quantity cell.
+///
+/// Three states, because the API gives three answers: a number, "no quantity
+/// is known for this product", and "we have not asked yet". Showing 0 for the
+/// last two would be a lie about stock, which is the one thing this column
+/// must never do.
+class _StockCell extends StatelessWidget {
+  const _StockCell({required this.availability, required this.isLoading});
+
+  final Availability availability;
+  final bool isLoading;
+
+  @override
+  Widget build(BuildContext context) {
+    return switch (availability) {
+      InStock(:final quantity) => Text(
+        NumberFormatter.count(quantity, context.localeName),
+        style: context.text.titleSmall?.copyWith(
+          color: switch (quantity) {
+            0 => context.semantic.danger,
+            <= 5 => context.semantic.warning,
+            _ => context.colors.onSurface,
+          },
+        ),
+      ),
+      // Still being fetched: a muted placeholder rather than a spinner per
+      // row, which would make the whole table flicker.
+      NoStockRecord() || AvailabilityUnknown() when isLoading => Text(
+        '·',
+        style: context.text.bodyMedium?.copyWith(
+          color: context.colors.onSurfaceVariant,
+        ),
+      ),
+      NoStockRecord() || AvailabilityUnknown() => Tooltip(
+        message: context.l10n.productQuantityUnknownHint,
+        child: Text(
+          '—',
+          style: context.text.bodyMedium?.copyWith(
+            color: context.colors.onSurfaceVariant,
+          ),
+        ),
+      ),
+    };
   }
 }
