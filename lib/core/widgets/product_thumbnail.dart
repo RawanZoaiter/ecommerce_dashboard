@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../extensions/context_x.dart';
@@ -6,10 +5,17 @@ import '../theme/app_spacing.dart';
 
 /// A product image with a graceful fallback.
 ///
-/// Falls back to the product's initial whenever the URL is empty or will not
-/// load — offline, during a demo with no network, or for a product whose image
-/// the API has not returned. A broken-image icon in every table row would make
-/// the whole screen look faulty.
+/// Loaded with [Image.network] and `webHtmlElementStrategy`, not with a
+/// byte-fetching cache. On the web, fetching image bytes goes through the same
+/// CORS check as any other request, and the API serves `/storage/...` without
+/// an `Access-Control-Allow-Origin` header — so every product image was being
+/// blocked by the browser and falling back to its initial. An `<img>` element
+/// displays a cross-origin image without that header, which is exactly what a
+/// plain web page does.
+///
+/// The initial is still drawn whenever the URL is empty or the image will not
+/// load at all; a broken-image icon in every row would make the whole table
+/// look faulty.
 class ProductThumbnail extends StatelessWidget {
   const ProductThumbnail({
     required this.imageUrl,
@@ -33,15 +39,20 @@ class ProductThumbnail extends StatelessWidget {
         height: size,
         child: imageUrl.isEmpty
             ? _Fallback(name: name, size: size)
-            : CachedNetworkImage(
-                imageUrl: imageUrl,
+            : Image.network(
+                imageUrl,
                 fit: BoxFit.cover,
-                fadeInDuration: const Duration(milliseconds: 180),
-                // The same fallback while loading, so a slow or offline table
-                // shows initials rather than a column of blank boxes.
-                placeholder: (context, _) => _Fallback(name: name, size: size),
-                errorWidget: (context, _, _) =>
+                // Falls back to an <img> element when the byte fetch is
+                // refused, which is the cross-origin case above.
+                webHtmlElementStrategy: WebHtmlElementStrategy.fallback,
+                errorBuilder: (context, _, _) =>
                     _Fallback(name: name, size: size),
+                frameBuilder: (context, child, frame, wasSynchronous) {
+                  if (wasSynchronous || frame != null) return child;
+                  // Hold the initial rather than a blank box while loading, so
+                  // a slow table never shows a column of empty squares.
+                  return _Fallback(name: name, size: size);
+                },
               ),
       ),
     );
