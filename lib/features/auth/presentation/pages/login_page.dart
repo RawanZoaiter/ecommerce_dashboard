@@ -155,6 +155,14 @@ class _LoginFormState extends State<_LoginForm> {
           constraints: const BoxConstraints(maxWidth: 400),
           child: Form(
             key: _formKey,
+            // Without this a field validates only when the button is pressed,
+            // so the message from one attempt sits under a value the user has
+            // already corrected - the form says "enter a valid email" at a
+            // perfectly valid address. Re-validating on edit, but only after
+            // the first interaction, clears each message the moment the field
+            // is right without scolding anyone for an empty form they have
+            // not filled in yet.
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,

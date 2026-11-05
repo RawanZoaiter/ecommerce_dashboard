@@ -141,6 +141,10 @@ class _NewProductViewState extends State<_NewProductView> {
               constraints: const BoxConstraints(maxWidth: 820),
               child: Form(
                 key: _formKey,
+                // Same reason as the login form: without this, a message from
+                // one failed attempt stays under a field the user has since
+                // fixed.
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: _FormBody(
                   state: state,
                   nameController: _nameController,
