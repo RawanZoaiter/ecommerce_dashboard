@@ -169,7 +169,5 @@
   "productFormQuantityHelp": "تُرسَل إلى خدمة المخزون. يُسمح بالصفر.",
   "productFormErrorQuantity": "الكمية الأولية مطلوبة.",
   "productFormErrorQuantityInvalid": "أدخل عددًا صحيحًا، صفرًا فأكثر.",
-  "productFormPendingTitle": "انحفظ المنتج بس المخزون ما انسجّل",
-  "productFormPendingMessage": "المنتج موجود لكن خدمة المخزون ما أكّدت كميته، فما حدا بيقدر يطلبه بعد. بدها إعادة محاولة.",
   "errorInventoryConflict": "خدمة المخزون عندها سجل مخزون مختلف لهذا المنتج. لازم حدا يحلّ التعارض قبل ما ينباع."
 }

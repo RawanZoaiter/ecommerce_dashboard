@@ -563,13 +563,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Enter a whole number, 0 or more.';
 
   @override
-  String get productFormPendingTitle => 'Saved, but stock is not set up';
-
-  @override
-  String get productFormPendingMessage =>
-      'The product exists but the inventory service did not confirm its stock, so nobody can order it yet. It needs to be retried.';
-
-  @override
   String get errorInventoryConflict =>
       'The inventory service already holds a different stock record for this product. Someone has to resolve that before it can be sold.';
 }

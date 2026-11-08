@@ -555,13 +555,6 @@ class AppLocalizationsAr extends AppLocalizations {
       'أدخل عددًا صحيحًا، صفرًا فأكثر.';
 
   @override
-  String get productFormPendingTitle => 'انحفظ المنتج بس المخزون ما انسجّل';
-
-  @override
-  String get productFormPendingMessage =>
-      'المنتج موجود لكن خدمة المخزون ما أكّدت كميته، فما حدا بيقدر يطلبه بعد. بدها إعادة محاولة.';
-
-  @override
   String get errorInventoryConflict =>
       'خدمة المخزون عندها سجل مخزون مختلف لهذا المنتج. لازم حدا يحلّ التعارض قبل ما ينباع.';
 }

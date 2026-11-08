@@ -100,37 +100,10 @@ class _NewProductViewState extends State<_NewProductView> {
     return BlocConsumer<NewProductCubit, NewProductState>(
       listenWhen: (previous, current) =>
           current.status == NewProductStatus.success,
-      listener: (context, state) async {
-        // 201 and 202 are both "saved", but only one of them means the
-        // product can be sold. A snack bar for the pending case would let
-        // someone walk away believing the product is live when no customer
-        // can order it, so that case has to be acknowledged.
-        if (state.created?.provisioning.isPending ?? false) {
-          await showDialog<void>(
-            context: context,
-            builder: (context) => AlertDialog(
-              icon: Icon(
-                Icons.inventory_outlined,
-                color: context.semantic.warning,
-              ),
-              title: Text(l10n.productFormPendingTitle),
-              content: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 380),
-                child: Text(l10n.productFormPendingMessage),
-              ),
-              actions: [
-                FilledButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: Text(l10n.actionClose),
-                ),
-              ],
-            ),
-          );
-          if (!context.mounted) return;
-        } else {
-          context.showSnack(l10n.productFormSuccess);
-        }
-        context.go(Routes.products);
+      listener: (context, state) {
+        context
+          ..showSnack(l10n.productFormSuccess)
+          ..go(Routes.products);
       },
       builder: (context, state) {
         return ListView(

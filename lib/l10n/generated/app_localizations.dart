@@ -1112,18 +1112,6 @@ abstract class AppLocalizations {
   /// **'Enter a whole number, 0 or more.'**
   String get productFormErrorQuantityInvalid;
 
-  /// No description provided for @productFormPendingTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Saved, but stock is not set up'**
-  String get productFormPendingTitle;
-
-  /// No description provided for @productFormPendingMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'The product exists but the inventory service did not confirm its stock, so nobody can order it yet. It needs to be retried.'**
-  String get productFormPendingMessage;
-
   /// No description provided for @errorInventoryConflict.
   ///
   /// In en, this message translates to:

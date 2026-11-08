@@ -247,7 +247,5 @@
   "productFormQuantityHelp": "Sent to the inventory service. 0 is allowed.",
   "productFormErrorQuantity": "Opening stock is required.",
   "productFormErrorQuantityInvalid": "Enter a whole number, 0 or more.",
-  "productFormPendingTitle": "Saved, but stock is not set up",
-  "productFormPendingMessage": "The product exists but the inventory service did not confirm its stock, so nobody can order it yet. It needs to be retried.",
   "errorInventoryConflict": "The inventory service already holds a different stock record for this product. Someone has to resolve that before it can be sold."
 }
