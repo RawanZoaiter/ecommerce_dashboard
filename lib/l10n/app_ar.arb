@@ -120,7 +120,6 @@
   "productFormErrorImageType": "الأنواع المسموحة: JPG، JPEG، PNG، WEBP.",
   "productFormErrorImageSize": "حجم الصورة 5 ميغابايت كحد أقصى.",
   "productFormSuccess": "تمت إضافة المنتج.",
-  "productFormStockWarning": "المنتج الجديد ما إله سجل مخزون، فما بينفع يُطلب لحد ما يسجّل له فريق المخزون كمية.",
   "ordersTitle": "الطلبات",
   "ordersSubtitle": "كل الطلبات في المتجر.",
   "ordersColumnId": "الطلب",

@@ -386,10 +386,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get productFormSuccess => 'تمت إضافة المنتج.';
 
   @override
-  String get productFormStockWarning =>
-      'المنتج الجديد ما إله سجل مخزون، فما بينفع يُطلب لحد ما يسجّل له فريق المخزون كمية.';
-
-  @override
   String get ordersTitle => 'الطلبات';
 
   @override

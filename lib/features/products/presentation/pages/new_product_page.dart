@@ -127,14 +127,6 @@ class _NewProductViewState extends State<_NewProductView> {
             ),
             const SizedBox(height: AppSpacing.xl),
 
-            // The guide's own behaviour, surfaced up front: POST /products
-            // creates no stock record, so the product lands unorderable.
-            InfoBanner(
-              message: l10n.productFormStockWarning,
-              tone: BannerTone.warning,
-            ),
-            const SizedBox(height: AppSpacing.xl),
-
             if (state.status == NewProductStatus.failure &&
                 state.fieldErrors.isEmpty) ...[
               InfoBanner(message: l10n.errorGeneric, tone: BannerTone.danger),

@@ -394,10 +394,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get productFormSuccess => 'Product added.';
 
   @override
-  String get productFormStockWarning =>
-      'Newly added products have no stock record, so they cannot be ordered until the inventory team registers a quantity.';
-
-  @override
   String get ordersTitle => 'Orders';
 
   @override

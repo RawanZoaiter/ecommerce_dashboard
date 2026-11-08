@@ -164,7 +164,6 @@
   "productFormErrorImageType": "Allowed types: JPG, JPEG, PNG, WEBP.",
   "productFormErrorImageSize": "The image must be 5 MB or smaller.",
   "productFormSuccess": "Product added.",
-  "productFormStockWarning": "Newly added products have no stock record, so they cannot be ordered until the inventory team registers a quantity.",
   "ordersTitle": "Orders",
   "ordersSubtitle": "Every order placed in the store.",
   "ordersColumnId": "Order",

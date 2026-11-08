@@ -818,12 +818,6 @@ abstract class AppLocalizations {
   /// **'Product added.'**
   String get productFormSuccess;
 
-  /// No description provided for @productFormStockWarning.
-  ///
-  /// In en, this message translates to:
-  /// **'Newly added products have no stock record, so they cannot be ordered until the inventory team registers a quantity.'**
-  String get productFormStockWarning;
-
   /// No description provided for @ordersTitle.
   ///
   /// In en, this message translates to:
