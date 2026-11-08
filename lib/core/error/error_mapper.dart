@@ -123,6 +123,16 @@ abstract final class ErrorMapper {
       );
     }
 
+    // The product was saved but the inventory service already holds a
+    // different record for it. Reported with `inventory_status` in `data`,
+    // which is steadier to match on than the sentence.
+    if (data is Map<String, dynamic> && data['inventory_status'] != null) {
+      return InventoryConflictFailure(
+        debugMessage: message,
+        requestId: requestId,
+      );
+    }
+
     final lower = message?.toLowerCase() ?? '';
     if (lower.contains('not available for ordering')) {
       return ProductsUnavailableFailure(

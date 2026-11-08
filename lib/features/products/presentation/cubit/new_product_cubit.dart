@@ -7,7 +7,6 @@ import '../../../../core/error/failure.dart';
 import '../../../../core/utils/money.dart';
 import '../../domain/entities/category.dart';
 import '../../domain/entities/new_product.dart';
-import '../../domain/entities/product.dart';
 import '../../domain/repositories/product_repository.dart';
 
 enum NewProductStatus { editing, submitting, success, failure }
@@ -31,7 +30,7 @@ class NewProductState extends Equatable {
   final Uint8List? imageBytes;
   final String? imageFileName;
   final ImageRejection? imageRejection;
-  final Product? created;
+  final ProductCreation? created;
   final Failure? failure;
 
   bool get isSubmitting => status == NewProductStatus.submitting;
@@ -50,7 +49,7 @@ class NewProductState extends Equatable {
     String? imageFileName,
     bool clearImage = false,
     ImageRejection? imageRejection,
-    Product? created,
+    ProductCreation? created,
     Failure? failure,
   }) {
     return NewProductState(
@@ -114,6 +113,7 @@ class NewProductCubit extends Cubit<NewProductState> {
     required String description,
     required String price,
     required int categoryId,
+    required int initialQuantity,
   }) async {
     final bytes = state.imageBytes;
     final fileName = state.imageFileName;
@@ -127,6 +127,7 @@ class NewProductCubit extends Cubit<NewProductState> {
         description: description.trim(),
         price: Money.parse(price.trim()),
         categoryId: categoryId,
+        initialQuantity: initialQuantity,
         imageBytes: bytes,
         imageFileName: fileName,
       ),
@@ -134,8 +135,8 @@ class NewProductCubit extends Cubit<NewProductState> {
 
     emit(
       result.fold(
-        onOk: (product) =>
-            state.copyWith(status: NewProductStatus.success, created: product),
+        onOk: (creation) =>
+            state.copyWith(status: NewProductStatus.success, created: creation),
         onErr: (failure) =>
             state.copyWith(status: NewProductStatus.failure, failure: failure),
       ),

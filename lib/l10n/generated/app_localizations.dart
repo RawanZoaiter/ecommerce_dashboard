@@ -1081,6 +1081,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No order was created. Retrying sends the exact same request.'**
   String get orderErrorInventoryDownMessage;
+
+  /// No description provided for @productFormQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening stock'**
+  String get productFormQuantity;
+
+  /// No description provided for @productFormQuantityHint.
+  ///
+  /// In en, this message translates to:
+  /// **'25'**
+  String get productFormQuantityHint;
+
+  /// No description provided for @productFormQuantityHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent to the inventory service. 0 is allowed.'**
+  String get productFormQuantityHelp;
+
+  /// No description provided for @productFormErrorQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening stock is required.'**
+  String get productFormErrorQuantity;
+
+  /// No description provided for @productFormErrorQuantityInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a whole number, 0 or more.'**
+  String get productFormErrorQuantityInvalid;
+
+  /// No description provided for @productFormPendingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved, but stock is not set up'**
+  String get productFormPendingTitle;
+
+  /// No description provided for @productFormPendingMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The product exists but the inventory service did not confirm its stock, so nobody can order it yet. It needs to be retried.'**
+  String get productFormPendingMessage;
+
+  /// No description provided for @errorInventoryConflict.
+  ///
+  /// In en, this message translates to:
+  /// **'The inventory service already holds a different stock record for this product. Someone has to resolve that before it can be sold.'**
+  String get errorInventoryConflict;
 }
 
 class _AppLocalizationsDelegate

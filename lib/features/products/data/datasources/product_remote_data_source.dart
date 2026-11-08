@@ -57,12 +57,13 @@ class ProductRemoteDataSource {
   ///
   /// The content type is left for Dio to set: it has to include the multipart
   /// boundary, and a hand-written header would omit it (guide §5.10).
-  Future<Product> create(NewProduct draft) async {
+  Future<ProductCreation> create(NewProduct draft) async {
     final form = FormData.fromMap({
       'name': draft.name,
       'description': draft.description,
       'price': draft.price.apiValue,
       'category_id': draft.categoryId,
+      'initial_quantity': draft.initialQuantity,
       'image': MultipartFile.fromBytes(
         draft.imageBytes,
         filename: draft.imageFileName,
@@ -73,6 +74,16 @@ class ProductRemoteDataSource {
       ApiEndpoints.products,
       data: form,
     );
-    return ProductModel.fromJson(envelopeObject(response));
+
+    final data = envelopeObject(response);
+    return ProductCreation(
+      product: ProductModel.fromJson(data),
+      // Read from the body rather than inferred from 201 vs 202: the server
+      // states it outright, and one field is harder to misread than a status
+      // code two layers away.
+      provisioning: StockProvisioning.fromApi(
+        data['inventory_status'] as String?,
+      ),
+    );
   }
 }

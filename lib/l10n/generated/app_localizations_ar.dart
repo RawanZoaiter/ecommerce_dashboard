@@ -536,4 +536,32 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get orderErrorInventoryDownMessage =>
       'ما انعمل أي طلب. إعادة المحاولة بتبعت نفس الطلب تمامًا.';
+
+  @override
+  String get productFormQuantity => 'الكمية الأولية';
+
+  @override
+  String get productFormQuantityHint => '25';
+
+  @override
+  String get productFormQuantityHelp =>
+      'تُرسَل إلى خدمة المخزون. يُسمح بالصفر.';
+
+  @override
+  String get productFormErrorQuantity => 'الكمية الأولية مطلوبة.';
+
+  @override
+  String get productFormErrorQuantityInvalid =>
+      'أدخل عددًا صحيحًا، صفرًا فأكثر.';
+
+  @override
+  String get productFormPendingTitle => 'انحفظ المنتج بس المخزون ما انسجّل';
+
+  @override
+  String get productFormPendingMessage =>
+      'المنتج موجود لكن خدمة المخزون ما أكّدت كميته، فما حدا بيقدر يطلبه بعد. بدها إعادة محاولة.';
+
+  @override
+  String get errorInventoryConflict =>
+      'خدمة المخزون عندها سجل مخزون مختلف لهذا المنتج. لازم حدا يحلّ التعارض قبل ما ينباع.';
 }

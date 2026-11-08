@@ -67,6 +67,10 @@ class ErrorStateView extends StatelessWidget {
         l10n.orderErrorUnavailableTitle,
         l10n.orderErrorUnavailableMessage,
       ),
+      InventoryConflictFailure() => (
+        l10n.errorTitle,
+        l10n.errorInventoryConflict,
+      ),
       InventoryUnavailableFailure() => (
         l10n.orderErrorInventoryDownTitle,
         l10n.orderErrorInventoryDownMessage,

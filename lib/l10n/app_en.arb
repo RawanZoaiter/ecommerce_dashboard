@@ -241,5 +241,13 @@
   "orderErrorUnavailableTitle": "Product not available for ordering",
   "orderErrorUnavailableMessage": "One or more products have no stock record.",
   "orderErrorInventoryDownTitle": "Inventory service busy",
-  "orderErrorInventoryDownMessage": "No order was created. Retrying sends the exact same request."
+  "orderErrorInventoryDownMessage": "No order was created. Retrying sends the exact same request.",
+  "productFormQuantity": "Opening stock",
+  "productFormQuantityHint": "25",
+  "productFormQuantityHelp": "Sent to the inventory service. 0 is allowed.",
+  "productFormErrorQuantity": "Opening stock is required.",
+  "productFormErrorQuantityInvalid": "Enter a whole number, 0 or more.",
+  "productFormPendingTitle": "Saved, but stock is not set up",
+  "productFormPendingMessage": "The product exists but the inventory service did not confirm its stock, so nobody can order it yet. It needs to be retried.",
+  "errorInventoryConflict": "The inventory service already holds a different stock record for this product. Someone has to resolve that before it can be sold."
 }

@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -40,6 +41,7 @@ class _NewProductViewState extends State<_NewProductView> {
   final _nameController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _priceController = TextEditingController();
+  final _quantityController = TextEditingController();
   int? _categoryId;
 
   @override
@@ -47,6 +49,7 @@ class _NewProductViewState extends State<_NewProductView> {
     _nameController.dispose();
     _descriptionController.dispose();
     _priceController.dispose();
+    _quantityController.dispose();
     super.dispose();
   }
 
@@ -86,6 +89,7 @@ class _NewProductViewState extends State<_NewProductView> {
       description: _descriptionController.text,
       price: _priceController.text,
       categoryId: _categoryId!,
+      initialQuantity: int.parse(_quantityController.text.trim()),
     );
   }
 
@@ -96,10 +100,37 @@ class _NewProductViewState extends State<_NewProductView> {
     return BlocConsumer<NewProductCubit, NewProductState>(
       listenWhen: (previous, current) =>
           current.status == NewProductStatus.success,
-      listener: (context, state) {
-        context
-          ..showSnack(l10n.productFormSuccess)
-          ..go(Routes.products);
+      listener: (context, state) async {
+        // 201 and 202 are both "saved", but only one of them means the
+        // product can be sold. A snack bar for the pending case would let
+        // someone walk away believing the product is live when no customer
+        // can order it, so that case has to be acknowledged.
+        if (state.created?.provisioning.isPending ?? false) {
+          await showDialog<void>(
+            context: context,
+            builder: (context) => AlertDialog(
+              icon: Icon(
+                Icons.inventory_outlined,
+                color: context.semantic.warning,
+              ),
+              title: Text(l10n.productFormPendingTitle),
+              content: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 380),
+                child: Text(l10n.productFormPendingMessage),
+              ),
+              actions: [
+                FilledButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text(l10n.actionClose),
+                ),
+              ],
+            ),
+          );
+          if (!context.mounted) return;
+        } else {
+          context.showSnack(l10n.productFormSuccess);
+        }
+        context.go(Routes.products);
       },
       builder: (context, state) {
         return ListView(
@@ -150,6 +181,7 @@ class _NewProductViewState extends State<_NewProductView> {
                   nameController: _nameController,
                   descriptionController: _descriptionController,
                   priceController: _priceController,
+                  quantityController: _quantityController,
                   categoryId: _categoryId,
                   onCategoryChanged: (value) =>
                       setState(() => _categoryId = value),
@@ -171,6 +203,7 @@ class _FormBody extends StatelessWidget {
     required this.nameController,
     required this.descriptionController,
     required this.priceController,
+    required this.quantityController,
     required this.categoryId,
     required this.onCategoryChanged,
     required this.onPickImage,
@@ -181,6 +214,7 @@ class _FormBody extends StatelessWidget {
   final TextEditingController nameController;
   final TextEditingController descriptionController;
   final TextEditingController priceController;
+  final TextEditingController quantityController;
   final int? categoryId;
   final ValueChanged<int?> onCategoryChanged;
   final VoidCallback onPickImage;
@@ -290,6 +324,30 @@ class _FormBody extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(height: AppSpacing.md),
+              TextFormField(
+                controller: quantityController,
+                decoration: InputDecoration(
+                  labelText: l10n.productFormQuantity,
+                  hintText: l10n.productFormQuantityHint,
+                  helperText: l10n.productFormQuantityHelp,
+                  errorText: _serverError('initial_quantity'),
+                  prefixIcon: const Icon(Icons.inventory_2_outlined, size: 20),
+                ),
+                keyboardType: TextInputType.number,
+                // Digits only: the server takes a whole number, and letting a
+                // decimal point in only earns a 422 after the upload.
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                validator: (value) {
+                  final text = value?.trim() ?? '';
+                  if (text.isEmpty) return l10n.productFormErrorQuantity;
+                  final parsed = int.tryParse(text);
+                  if (parsed == null || parsed < 0) {
+                    return l10n.productFormErrorQuantityInvalid;
+                  }
+                  return null;
+                },
               ),
             ],
           ),

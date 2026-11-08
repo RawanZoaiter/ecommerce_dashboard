@@ -544,4 +544,32 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get orderErrorInventoryDownMessage =>
       'No order was created. Retrying sends the exact same request.';
+
+  @override
+  String get productFormQuantity => 'Opening stock';
+
+  @override
+  String get productFormQuantityHint => '25';
+
+  @override
+  String get productFormQuantityHelp =>
+      'Sent to the inventory service. 0 is allowed.';
+
+  @override
+  String get productFormErrorQuantity => 'Opening stock is required.';
+
+  @override
+  String get productFormErrorQuantityInvalid =>
+      'Enter a whole number, 0 or more.';
+
+  @override
+  String get productFormPendingTitle => 'Saved, but stock is not set up';
+
+  @override
+  String get productFormPendingMessage =>
+      'The product exists but the inventory service did not confirm its stock, so nobody can order it yet. It needs to be retried.';
+
+  @override
+  String get errorInventoryConflict =>
+      'The inventory service already holds a different stock record for this product. Someone has to resolve that before it can be sold.';
 }

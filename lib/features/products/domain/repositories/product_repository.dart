@@ -32,5 +32,10 @@ abstract interface class ProductRepository {
   Future<Result<Map<int, Availability>>> availabilityFor(List<int> productIds);
 
   /// `POST /products` as multipart. Admin only.
-  Future<Result<Product>> create(NewProduct draft);
+  ///
+  /// Succeeds in two degrees: the product is saved either with its opening
+  /// stock registered or without it, and the caller has to tell the admin
+  /// which. A 409 means the inventory service already holds a different
+  /// record for that product and someone must resolve it by hand.
+  Future<Result<ProductCreation>> create(NewProduct draft);
 }

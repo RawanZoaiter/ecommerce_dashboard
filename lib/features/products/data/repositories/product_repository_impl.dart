@@ -67,6 +67,6 @@ class ProductRepositoryImpl with RemoteSupport implements ProductRepository {
   }
 
   @override
-  Future<Result<Product>> create(NewProduct draft) =>
+  Future<Result<ProductCreation>> create(NewProduct draft) =>
       guard(() => _remote.create(draft));
 }

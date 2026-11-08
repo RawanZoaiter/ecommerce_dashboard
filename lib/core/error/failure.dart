@@ -146,6 +146,16 @@ class ProductsUnavailableFailure extends Failure {
   const ProductsUnavailableFailure({super.debugMessage, super.requestId});
 }
 
+/// 409 while creating a product: the product row was saved, but the
+/// inventory service already holds a different stock record for that id.
+///
+/// Not something a retry fixes - the two sides disagree and a person has to
+/// decide which is right - so the screen says so rather than offering a
+/// retry button.
+class InventoryConflictFailure extends Failure {
+  const InventoryConflictFailure({super.debugMessage, super.requestId});
+}
+
 /// 503. The inventory service did not answer, so no order was created.
 /// Retrying must reuse the very same Idempotency-Key (inventory update §3.2).
 class InventoryUnavailableFailure extends Failure {
