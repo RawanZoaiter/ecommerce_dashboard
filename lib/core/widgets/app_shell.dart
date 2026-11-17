@@ -7,6 +7,7 @@ import '../extensions/context_x.dart';
 import '../router/route_paths.dart';
 import '../settings/settings_cubit.dart';
 import '../theme/app_spacing.dart';
+import 'new_order_toaster.dart';
 import 'user_avatar.dart';
 
 class _NavItem {
@@ -63,20 +64,22 @@ class AppShell extends StatelessWidget {
       drawer: isCompact
           ? Drawer(child: _Sidebar(location: location, showLabels: true))
           : null,
-      body: SafeArea(
-        child: Row(
-          children: [
-            if (!isCompact)
-              _Sidebar(location: location, showLabels: context.isExpanded),
-            Expanded(
-              child: Column(
-                children: [
-                  _TopBar(showMenuButton: isCompact),
-                  Expanded(child: child),
-                ],
+      body: NewOrderToaster(
+        child: SafeArea(
+          child: Row(
+            children: [
+              if (!isCompact)
+                _Sidebar(location: location, showLabels: context.isExpanded),
+              Expanded(
+                child: Column(
+                  children: [
+                    _TopBar(showMenuButton: isCompact),
+                    Expanded(child: child),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

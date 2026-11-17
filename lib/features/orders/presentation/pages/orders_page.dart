@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/di/injector.dart';
 import '../../../../core/extensions/context_x.dart';
+import '../../../../core/realtime/realtime_service.dart';
 import '../../../../core/router/route_paths.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/utils/date_formatter.dart';
@@ -27,7 +28,7 @@ class OrdersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => OrdersCubit(sl<OrderRepository>())..fetch(),
+      create: (_) => OrdersCubit(sl<OrderRepository>(), sl<RealtimeService>())..fetch(),
       child: const _OrdersView(),
     );
   }

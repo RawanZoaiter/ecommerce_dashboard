@@ -1111,6 +1111,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The inventory service already holds a different stock record for this product. Someone has to resolve that before it can be sold.'**
   String get errorInventoryConflict;
+
+  /// Shown on any page when a customer places an order (live).
+  ///
+  /// In en, this message translates to:
+  /// **'New order #{id} from {customer}'**
+  String newOrderToast(int id, String customer);
+
+  /// No description provided for @newOrderToastAction.
+  ///
+  /// In en, this message translates to:
+  /// **'View'**
+  String get newOrderToastAction;
 }
 
 class _AppLocalizationsDelegate

@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/di/injector.dart';
+import '../../../../core/realtime/realtime_service.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repository.dart';
 
@@ -55,6 +57,8 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> signOut() async {
     await _repository.logout();
+    // Stop receiving the previous admin's live events.
+    sl<RealtimeService>().disconnect();
     emit(const AuthState(status: AuthStatus.unauthenticated));
   }
 }

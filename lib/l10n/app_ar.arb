@@ -168,5 +168,7 @@
   "productFormQuantityHelp": "تُرسَل إلى خدمة المخزون. يُسمح بالصفر.",
   "productFormErrorQuantity": "الكمية الأولية مطلوبة.",
   "productFormErrorQuantityInvalid": "أدخل عددًا صحيحًا، صفرًا فأكثر.",
-  "errorInventoryConflict": "خدمة المخزون عندها سجل مخزون مختلف لهذا المنتج. لازم حدا يحلّ التعارض قبل ما ينباع."
+  "errorInventoryConflict": "خدمة المخزون عندها سجل مخزون مختلف لهذا المنتج. لازم حدا يحلّ التعارض قبل ما ينباع.",
+  "newOrderToast": "طلب جديد #{id} من {customer}",
+  "newOrderToastAction": "عرض"
 }

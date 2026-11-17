@@ -20,6 +20,9 @@ abstract final class ApiEndpoints {
   static const String products = '/products';
   static String product(int id) => '/products/$id';
 
+  // Real time (requirement 4): signs a subscription to a private WebSocket channel
+  static const String broadcastingAuth = '/broadcasting/auth';
+
   // Orders
   static const String orders = '/orders';
   static String order(int id) => '/orders/$id';

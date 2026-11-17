@@ -561,4 +561,12 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get errorInventoryConflict =>
       'The inventory service already holds a different stock record for this product. Someone has to resolve that before it can be sold.';
+
+  @override
+  String newOrderToast(int id, String customer) {
+    return 'New order #$id from $customer';
+  }
+
+  @override
+  String get newOrderToastAction => 'View';
 }

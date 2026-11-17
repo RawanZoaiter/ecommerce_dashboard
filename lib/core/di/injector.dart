@@ -13,6 +13,7 @@ import '../../features/products/data/datasources/product_remote_data_source.dart
 import '../../features/products/data/repositories/product_repository_impl.dart';
 import '../../features/products/domain/repositories/product_repository.dart';
 import '../network/api_client.dart';
+import '../realtime/realtime_service.dart';
 import '../storage/token_storage.dart';
 
 final GetIt sl = GetIt.instance;
@@ -32,6 +33,9 @@ Future<void> configureDependencies() async {
         tokenStorage: sl<TokenStorage>(),
         onSessionExpired: () => sl<TokenStorage>().clear(),
       ),
+    )
+    ..registerLazySingleton<RealtimeService>(
+      () => RealtimeService(sl<ApiClient>().dio),
     )
     ..registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSource(sl<ApiClient>().dio),

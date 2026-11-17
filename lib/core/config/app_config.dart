@@ -20,4 +20,19 @@ abstract final class AppConfig {
   /// §5.8: the API caps `per_page` at 50.
   static const int maxPerPage = 50;
   static const int defaultPerPage = 15;
+
+  /// Laravel Reverb, the WebSocket server (requirement 4). Override at build time, e.g.
+  /// `--dart-define=REVERB_HOST=192.168.1.5`. The key is the PUBLIC app key; the secret stays in Laravel.
+  static const String reverbHost = String.fromEnvironment(
+    'REVERB_HOST',
+    defaultValue: 'localhost',
+  );
+  static const int reverbPort = int.fromEnvironment(
+    'REVERB_PORT',
+    defaultValue: 8081,
+  );
+  static const String reverbAppKey = String.fromEnvironment(
+    'REVERB_APP_KEY',
+    defaultValue: 'ee0aeab3831bb0f5a8fe',
+  );
 }

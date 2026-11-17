@@ -553,4 +553,12 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get errorInventoryConflict =>
       'خدمة المخزون عندها سجل مخزون مختلف لهذا المنتج. لازم حدا يحلّ التعارض قبل ما ينباع.';
+
+  @override
+  String newOrderToast(int id, String customer) {
+    return 'طلب جديد #$id من $customer';
+  }
+
+  @override
+  String get newOrderToastAction => 'عرض';
 }

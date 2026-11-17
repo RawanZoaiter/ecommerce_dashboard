@@ -246,5 +246,8 @@
   "productFormQuantityHelp": "Sent to the inventory service. 0 is allowed.",
   "productFormErrorQuantity": "Opening stock is required.",
   "productFormErrorQuantityInvalid": "Enter a whole number, 0 or more.",
-  "errorInventoryConflict": "The inventory service already holds a different stock record for this product. Someone has to resolve that before it can be sold."
+  "errorInventoryConflict": "The inventory service already holds a different stock record for this product. Someone has to resolve that before it can be sold.",
+  "newOrderToast": "New order #{id} from {customer}",
+  "@newOrderToast": {"description": "Shown on any page when a customer places an order (live).", "placeholders": {"id": {"type": "int"}, "customer": {"type": "String"}}},
+  "newOrderToastAction": "View"
 }
